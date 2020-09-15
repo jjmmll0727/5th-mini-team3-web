@@ -5,20 +5,18 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
 
-// const mysql = require('mysql');
-// const db = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: '',
-//   database: ''
-// });
+//Database
+const mongoose = require('mongoose');
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
+mongoose.set('useCreateIndex', true)
 
-// db.connect( (err)=>{
-//   if(err) console.log(err);
-//   else{
-//     console.log("MYSQL Connected..");
-//   }
-// });
+mongoose.connect('mongodb://localhost:27017/team3mini').then((db)=>{
+
+  console.log('Mongodb connected');
+
+}).catch(err=> console.log(err));
+
 
 ////Middleware
 //cors 
