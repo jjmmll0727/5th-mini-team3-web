@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 
 
-exports.post = (req, res, next) => {
+exports.register = (req, res, next) => {
     User.findOne({ userId: req.body.userId }).exec().then(user => {
         if (user) {
             return res.status(409).json({

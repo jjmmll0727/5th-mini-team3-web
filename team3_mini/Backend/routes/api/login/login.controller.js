@@ -9,7 +9,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const verifytoken = require('../middleware/jwt-verify');
 // 이 부분은 나중에 사용자가 로그인해야 접근할수 있는 라우팅에 
-// exports.post('/',verifytoken,(req, res) => 형태로 사용하면됩니다!
+// exports.OOO(verifytoken,(req, res) => 형태로 사용하면됩니다!
 
 exports.login =( (req, res) => {
 
