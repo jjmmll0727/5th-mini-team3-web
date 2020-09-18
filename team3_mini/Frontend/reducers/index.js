@@ -2,7 +2,7 @@ import { HYDRATE } from "next-redux-wrapper";
 import { combineReducers } from "redux";
 
 import user from "./user";
-import post from "./post";
+import site from "./site";
 
 const intialState = {};
 
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
     }
   },
   user,
-  post,
+  site,
 });
 
 export default rootReducer;
