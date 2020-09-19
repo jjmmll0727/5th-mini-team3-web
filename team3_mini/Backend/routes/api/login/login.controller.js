@@ -22,18 +22,21 @@ exports.login =( (req, res) => {
         .then(log => {
             if (!log) {
                 return res.status(401).json({
+                    code: 101, //아이디 실패
                     message: '인증 실패'
                 });
             } else {
                 bcrypt.compare(req.body.password, log.password, (err, matched) => {
 
                     if (err) return res.status(401).json({
+                        code: 103, //에러 실패
                         message: '인증 실패'
                     });
                     if (matched) {
                         jwt.sign({ user: log }, 'secretKey', { expiresIn: '1h' }, (err, token) => {
                             // res.cookie('authorization', token);
                             res.status(200).json({
+                                code: 201, // 로그인 성공
                                 message: '로그인 성공',
                                 token: token
                             });
@@ -41,6 +44,7 @@ exports.login =( (req, res) => {
 
                     } else {
                         res.status(401).json({
+                            code: 102, //비밀번호 실패
                             message: '인증 실패'
                         });
                     }
