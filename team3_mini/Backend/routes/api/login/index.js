@@ -10,6 +10,5 @@ router.get('/get', controller.get);
 
 router.post('/create', controller.login);
 
-router.get('/testjwt',verifyToken, controller.testjwt);
 
 module.exports = router

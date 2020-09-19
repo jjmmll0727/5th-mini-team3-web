@@ -8,13 +8,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
-exports.testjwt = ((req,res)=>{
-    res.json({
-        data: req.userData
-    })
 
-
-})
 
 exports.login =( (req, res) => {
 
@@ -39,6 +33,7 @@ exports.login =( (req, res) => {
                                 code: 201, // 로그인 성공
                                 message: '로그인 성공',
                                 token: token
+                                
                             });
                         })
 
