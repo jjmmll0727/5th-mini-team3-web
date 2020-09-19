@@ -9,7 +9,7 @@ exports.create = (req, res) => {
     Category.findOne({ name: req.body.name }).then(category => {
         if (category) {
             res.status(409).json({
-                code: 113, //존재하는 카테고리 이름 실패
+                code: 113, //카테고리 이름 중복
                 message: "이미 존재하는 카테고리 입니다"
 
             })

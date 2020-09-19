@@ -44,7 +44,7 @@ exports.register = (req, res, next) => {
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
                     newUser.password = hash;
                     newUser.save().then(result => {
-                        console.log(result);
+                        // console.log(result);
                         res.status(201).json({
                             code: 202, //회원가입 성공
                             message: "POST 요청을 통한 사용자데이터 저장",
@@ -54,7 +54,7 @@ exports.register = (req, res, next) => {
                         console.log(err);
                         res.status(500).json({
                             code: 110, //해싱 에러
-                            error: err
+                            error: "서버 측에서 발생한 에러입니다."
 
                         });
                     });

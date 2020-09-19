@@ -16,15 +16,15 @@ exports.login =( (req, res) => {
         .then(log => {
             if (!log) {
                 return res.status(401).json({
-                    code: 101, //아이디 실패
+                    code: 101, //아이디 혹은 비밀번호 실패
                     message: '인증 실패'
                 });
             } else {
                 bcrypt.compare(req.body.password, log.password, (err, matched) => {
 
                     if (err) return res.status(401).json({
-                        code: 103, //에러 실패
-                        message: '인증 실패'
+                        code: 110, //에러 실패
+                        message: '서버 측에서 발생한 에러입니다.'
                     });
                     if (matched) {
                         jwt.sign({ user: log }, 'secretKey', { expiresIn: '1h' }, (err, token) => {
