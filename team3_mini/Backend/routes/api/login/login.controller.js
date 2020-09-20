@@ -9,7 +9,6 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 
-
 exports.login =( (req, res) => {
 
     User.findOne({ userId: req.body.userId })
@@ -43,14 +42,9 @@ exports.login =( (req, res) => {
                             message: '인증 실패'
                         });
                     }
-
                 })
-
             }
-
-
         });
-
 })
 
 

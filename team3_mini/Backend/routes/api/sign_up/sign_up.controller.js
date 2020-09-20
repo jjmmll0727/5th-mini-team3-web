@@ -17,7 +17,7 @@ exports.register = (req, res, next) => {
         })
     } else {
         User.findOne({ userId: req.body.userId }).exec().then(user => {
-
+            // evec() mongo query에서 버전3 에서는 promise를 위해 exec이 필요했어, 버전4에서는 필요 x
             if (user) {
                 return res.status(409).json({
                     code: 106, //존재하는 아이디 실패

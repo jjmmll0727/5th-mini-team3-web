@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const Category = require('../models/Categories');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const { resolve } = require('path');
 
 exports.create = (req, res) => {
     Category.findOne({ name: req.body.name }).then(category => {
@@ -22,7 +23,8 @@ exports.create = (req, res) => {
                     code: 111, //카테고리 이름 미입력
                     message: '카테고리 이름이 입력되지 않았습니다'
                 });
-            } else {
+            } 
+            else {
                 const newCategory = new Category({
                     name, user
                 });
@@ -32,8 +34,7 @@ exports.create = (req, res) => {
                         message: "카테고리 생성 성공",
                         savedCategory: newCategory
                     });
-
-
+                    
                 }).catch((err) => {
                     console.log(err);
                     res.status(500).json({
@@ -42,9 +43,17 @@ exports.create = (req, res) => {
                     });
 
                 });
+                resolve(savedCategory);
             }
+            
+            
         }
 
     });
+    //console.log(savedCategory);
+}
 
+
+exports.get = (req, res) =>{
+    res.send("here is for category");
 }

@@ -5,9 +5,9 @@ const {verifyToken} = require('../middleware/jwt-verify');
 
 
 
-//router.get('/get', controller.get);
+router.get('/get', controller.get);
 
-router.post('/create',verifyToken, controller.create);
+router.post('/create', controller.create);
 
 
 module.exports = router
