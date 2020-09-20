@@ -18,13 +18,14 @@ exports.create = (req, res) => {
         }else{
             // todo1: category 추가해야해
            
-            const category = req.category;
+            const category = req.category; // 수정해야해.
             const url = req.body.url;
             const title = req.body.title;
             const description = req.body.description;
             const img = req.body.img;
             const double_id = req.body.double_id;
             const double_pw = req.body.double_pw;
+            const open = req.body.open;
             // 이중 비밀번호를 어떻게 할까... 
              
             

@@ -44,6 +44,15 @@ const SiteSchema = new Schema({
         required: true,
         trim: true
     },
+    
+    open : {
+        type: Boolean,
+        required: true
+    }, // 비공개/공개 여부
+
+    like : {
+        type: Number
+    } // 좋아요 수 
    
 
 });
