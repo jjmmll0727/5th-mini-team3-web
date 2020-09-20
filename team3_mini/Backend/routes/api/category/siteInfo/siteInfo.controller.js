@@ -3,10 +3,8 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const Category = require('../models/Categories');
-const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-const Site = require('../models/Site');
+const Site = require('../../models/Site');
 
 
 
@@ -20,7 +18,7 @@ exports.create = (req, res) => {
         }else{
             // todo1: category 추가해야해
            
-            //const category = 
+            const category = req.category;
             const url = req.body.url;
             const title = req.body.title;
             const description = req.body.description;
