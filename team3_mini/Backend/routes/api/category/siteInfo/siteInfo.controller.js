@@ -28,12 +28,13 @@ exports.create = (req, res) => {
             const double_id = req.body.double_id;
             const double_pw = req.body.double_pw;
             // 이중 비밀번호를 어떻게 할까... 
+             
             
             if(!title){
                 res.status(409).json({
                     code: 111, /// 사이트의 이름 미입력
                     message: '사이트의 이름이 입력되지 않았습니다'
-                    
+
                 });
             }
             else if(!url){
