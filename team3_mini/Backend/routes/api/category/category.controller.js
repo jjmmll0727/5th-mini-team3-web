@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const Category = require('../models/Categories');
@@ -18,6 +19,7 @@ exports.create = (req, res) => {
             console.log(req.userData);
             const name = req.body.name;
             const user = req.userData;
+            req.session.uid = user;
             if (!name) {
                 res.status(409).json({
                     code: 111, //카테고리 이름 미입력
@@ -50,7 +52,7 @@ exports.create = (req, res) => {
         }
 
     });
-    //console.log(savedCategory);
+    console.log(req.session.uid);
 }
 
 

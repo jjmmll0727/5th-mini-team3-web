@@ -15,7 +15,7 @@ exports.create = (req, res) => {
             })
         }else{
            
-            const category = req.params.category_id; // todo1: 수정해야해. ex) router.get('api/category/:category_id')
+            const category = req.params.category; // todo1: 수정해야해. ex) router.get('api/category/:category_id')
             const url = req.body.url;
             const title = req.body.title;
             const description = req.body.description;
