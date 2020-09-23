@@ -5,12 +5,13 @@ const User = require('../models/User');
 const Site = require('../models/Site');
 const Category = require('../models/Categories');
 const session = require('express-session');
+const jwt = require('jsonwebtoken');
 
 
 exports.show = (req, res) => {
 
-    Site.find({}).lean()
-        .then(sites => {
+    Site.find({}).lean().
+        then(sites => {
 
                 Category.find({}).lean().
                 then(categories => {
@@ -18,9 +19,11 @@ exports.show = (req, res) => {
                     res.send({ 
                         sites: sites,
                         categories: categories,
-                        userData: req.session.uid // req.session.uid 변수로 어느 페이지에서도 사용 가능하다. 
-                         
-                    });
+                        //userData: req.session.uid, // req.session.uid 변수로 어느 페이지에서도 사용 가능하다.
+                        userData : req.userData
+                            
+                    }) 
                 })
         })
+        
 }

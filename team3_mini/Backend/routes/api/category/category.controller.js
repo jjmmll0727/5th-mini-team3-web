@@ -19,7 +19,7 @@ exports.create = (req, res) => {
             console.log(req.userData);
             const name = req.body.name;
             const user = req.userData;
-            req.session.uid = user;
+            //req.session.uid = user;
             if (!name) {
                 res.status(409).json({
                     code: 111, //카테고리 이름 미입력
@@ -52,10 +52,49 @@ exports.create = (req, res) => {
         }
 
     });
-    console.log(req.session.uid);
 }
 
+
+
+exports.delete = (req, res) =>{
+    Category.findOne({ name: req.body.name }).then(category_name => {
+        if (category_name) {
+            Category.deleteOne({ name: req.body.name }).lean()
+            .then(result => {
+                req.flash('success_message','Category was deleted successfully');
+                //res.redirect('/admin/categories');
+                res.status(201).json({
+                    code: 211, //카테고리 삭제 완료
+                    message: "카테고리 삭제 완료"
+    
+                })
+            }).catch(err => {
+                res.status(500).json({
+                    code: 112, // 카테고리 삭제 실패
+                    message: "카테고리 삭제 실패"
+                });
+            
+            })
+            
+        } else {
+            res.status(409).json({
+                code: 113, //해당 카테고리 없음
+                message: "없는 카테고리입니다"
+
+            })
+            
+                
+        }
+
+    });
+}
+
+
+
+
+///////////////////////////////////////////
 
 exports.get = (req, res) =>{
     res.send("here is for category");
 }
+

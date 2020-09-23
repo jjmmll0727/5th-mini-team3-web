@@ -9,6 +9,7 @@ router.use('/siteInfo', verifyToken, siteInfo)
 router.get('/get', controller.get);
 
 router.post('/create', verifyToken, controller.create);
+router.post('/delete', verifyToken, controller.delete);
 
 
 module.exports = router
