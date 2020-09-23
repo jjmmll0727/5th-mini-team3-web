@@ -62,8 +62,10 @@ const reducer = (state = initialState, action) => {
         break;
       case SIGN_UP_FAILURE:
         draft.signUpLoading = false;
-        draft.signUpError = action.error;
+        draft.signUpError = action.error.message;
         break;
+      case "USER_ERROR_RESET":
+        draft.signUpError = null;
       default:
         break;
     }

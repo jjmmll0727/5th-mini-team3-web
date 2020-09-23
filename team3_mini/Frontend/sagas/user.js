@@ -2,22 +2,21 @@ import { all, fork, put, takeLatest, delay, call } from "redux-saga/effects";
 import axios from "axios";
 import { LOG_IN_SUCCESS, LOG_IN_FAILURE, LOG_OUT_SUCCESS, LOG_OUT_FAILURE, LOG_IN_REQUEST, LOG_OUT_REQUEST, SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from "../actions";
 
-// function loginAPI(data) {
-//   return axios.post("/user/login", data, { withCredentials: true });
-// }
+function loginAPI(data) {
+  return axios.post("/login/create", data, { withCredentials: true });
+}
 
 // function logoutAPI() {
 //   return axios.get("/user/logout");
 // }
 
-// function signupAPI(data) {
-//   return axios.post("/user/signup", data);
-// }
+function signupAPI(data) {
+  return axios.post("/sign_up/create", data);
+}
 
 function* login(action) {
   try {
-    // const result = yield call(loginAPI, action.data); // 그냥 인자로 넘기면 알아서 들어감. 더받고싶으면 더 넣으면 댐
-    yield delay(1000);
+    const result = yield call(loginAPI, action.data); // 그냥 인자로 넘기면 알아서 들어감. 더받고싶으면 더 넣으면 댐
     yield put({
       type: LOG_IN_SUCCESS,
       data: result.data, //	result.data 고정
@@ -47,10 +46,10 @@ function* logout() {
 }
 function* signup(action) {
   try {
-    // const result = yield call(signupAPI, action.data);
+    console.log(action.data);
+    const result = yield call(signupAPI, action.data);
     yield put({
       type: SIGN_UP_SUCCESS,
-      //   data: result.data,
     });
   } catch (err) {
     yield put({

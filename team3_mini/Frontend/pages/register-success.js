@@ -1,17 +1,17 @@
+import Link from "next/link";
 import React from "react";
 
 const AfterRegister = () => (
   <div
     style={{
       width: "600px",
-      height: "1200px",
+      height: "800px",
+      margin: "0 auto",
       left: "50%",
       top: "50%",
-      position: "fixed",
-      marginLeft: "-300px",
-      marginTop: "-600px",
       display: "flex",
       flexDirection: "column",
+      marginTop: "200px",
     }}
   >
     <div
@@ -69,14 +69,22 @@ const AfterRegister = () => (
           borderRadius: "10px",
         }}
       >
-        <span
+        <Link
+          href="/"
           style={{
             color: "#FFFFFF",
             font: "normal normal bold 22px/33px Noto Sans CJK KR",
           }}
         >
-          취소하기
-        </span>
+          <a
+            style={{
+              color: "#FFFFFF",
+              font: "normal normal bold 22px/33px Noto Sans CJK KR",
+            }}
+          >
+            홈으로 가기
+          </a>
+        </Link>
       </button>
       <button
         style={{
@@ -87,14 +95,16 @@ const AfterRegister = () => (
           borderRadius: "10px",
         }}
       >
-        <span
-          style={{
-            color: "#FFFFFF",
-            font: "normal normal bold 22px/33px Noto Sans CJK KR",
-          }}
-        >
-          가입하기
-        </span>
+        <Link href="/login">
+          <a
+            style={{
+              color: "#FFFFFF",
+              font: "normal normal bold 22px/33px Noto Sans CJK KR",
+            }}
+          >
+            로그인하기
+          </a>
+        </Link>
       </button>
     </div>
   </div>
