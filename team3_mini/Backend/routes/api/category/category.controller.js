@@ -1,91 +1,79 @@
 const express = require('express');
-const session = require('express-session');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const Category = require('../models/Categories');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-const { resolve } = require('path');
 
-exports.create = (req, res) => {
-    Category.findOne({ name: req.body.name }).then(category => {
-        if (category) {
+exports.include = (req, res) => {
+
+    Category.findOne({ name: req.body.name })
+        .then((category) => {
+
+            Category.findOne({ user: req.userData }).then((user) => {
+                if (user) {
+                    res.status(409).json({
+                        code: 115, //이미 추가한 카테고리
+                        message: "이미 추가한 카테고리 입니다"
+                    });
+                } else {
+                    category.user.push(req.userData);
+                    category.save().then(result => {
+                        res.status(201).json({
+                            code: 211, //카테고리 추가 성공
+                            message: "카테고리를 성공적으로 추가하였습니다",
+                            result: result
+                        });
+
+                    })
+
+                }
+
+            });
+
+        }).catch(err => {
             res.status(409).json({
-                code: 113, //카테고리 이름 중복
-                message: "이미 존재하는 카테고리 입니다"
+                code: 116, //카테고리 추가시, 이름 불러오기 오류
+                message: "카테고리를 찾지 못하였습니다",
+                err: err
+            });
+        });
 
-            })
-        } else {
-            console.log(req.userData);
-            const name = req.body.name;
-            const user = req.userData;
-            //req.session.uid = user;
-            if (!name) {
+};
+
+
+
+exports.exclude = (req, res) => {
+    Category.findOne({ name: req.body.name })
+    .then((category) => {
+
+        Category.findOne({ user: req.userData }).then((user) => {
+            if (!user) {
                 res.status(409).json({
-                    code: 111, //카테고리 이름 미입력
-                    message: '카테고리 이름이 입력되지 않았습니다'
+                    code: 119, //이미 제외한 카테고리
+                    message: "이미 제외한 카테고리 입니다"
                 });
-            } 
-            else {
-                const newCategory = new Category({
-                    name, user
-                });
-                newCategory.save().then(result => {
+            } else {
+                category.user.pull(req.userData);
+                category.save().then(result => {
                     res.status(201).json({
-                        code: 211, //카테고리 생성 성공
-                        message: "카테고리 생성 성공",
-                        savedCategory: newCategory
-                    });
-                    
-                }).catch((err) => {
-                    console.log(err);
-                    res.status(500).json({
-                        code: 112, // 카테고리 저장 실패
-                        error: err
+                        code: 213, //카테고리 추가 성공
+                        message: "카테고리를 성공적으로 제외하였습니다",
+                        result: result
                     });
 
-                });
-                
-            }
-            
-            
-        }
-
-    });
-}
-
-
-
-exports.delete = (req, res) =>{
-    Category.findOne({ name: req.body.name }).then(category_name => {
-        if (category_name) {
-            Category.deleteOne({ name: req.body.name }).lean()
-            .then(result => {
-                req.flash('success_message','Category was deleted successfully');
-                //res.redirect('/admin/categories');
-                res.status(201).json({
-                    code: 211, //카테고리 삭제 완료
-                    message: "카테고리 삭제 완료"
-    
                 })
-            }).catch(err => {
-                res.status(500).json({
-                    code: 112, // 카테고리 삭제 실패
-                    message: "카테고리 삭제 실패"
-                });
-            
-            })
-            
-        } else {
-            res.status(409).json({
-                code: 113, //해당 카테고리 없음
-                message: "없는 카테고리입니다"
 
-            })
-            
-                
-        }
+            }
 
+        });
+
+    }).catch(err => {
+        res.status(409).json({
+            code: 118, //카테고리 제외시, 이름 불러오기 오류
+            message: "카테고리를 찾지 못하였습니다",
+            err: err
+        });
     });
 }
 
@@ -94,7 +82,28 @@ exports.delete = (req, res) =>{
 
 ///////////////////////////////////////////
 
-exports.get = (req, res) =>{
+exports.create = (req,res) => {
+    Category.findOne({name: req.body.name}).then(category=>{
+        if(category){
+            res.status(409).json({
+                message:"이미 존재하는 카테고리"
+            });
+        }else{
+            const newCategory = new Category({
+                name: req.body.name
+            });
+            newCategory.save().then((result)=>{
+                res.status(200).json({
+                    message:"카테고리 추가 성공"
+                });
+            });
+        };
+
+    })
+
+};
+
+exports.get = (req, res) => {
     res.send("here is for category");
 }
 

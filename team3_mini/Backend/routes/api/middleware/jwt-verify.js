@@ -20,7 +20,7 @@ module.exports = {
                 });
 
                 if (userData) {
-                    console.log(userData);
+                    // console.log(userData);
                     req.userData = userData['user']._id;
                     //req.userData_category = userData['savedCatogory']
                     //미들웨어에서 변수를 넘김

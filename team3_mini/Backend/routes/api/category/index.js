@@ -4,12 +4,14 @@ const controller = require('./category.controller');
 const {verifyToken} = require('../middleware/jwt-verify');
 const siteInfo = require('./siteInfo');
 
-router.use('/siteInfo', verifyToken, siteInfo)
+router.use('/siteInfo', siteInfo)
 
 router.get('/get', controller.get);
 
-router.post('/create', verifyToken, controller.create);
-router.post('/delete', verifyToken, controller.delete);
+router.put('/include', verifyToken, controller.include);
+router.put('/exclude', verifyToken, controller.exclude);
+/////////////////////
+router.post('/admin/create',controller.create);
 
 
 module.exports = router

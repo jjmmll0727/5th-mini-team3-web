@@ -6,14 +6,13 @@ const logger = require('morgan');
 const app = express();
 
 
-//session
-const session = require('express-session');
 
 //Database
 const mongoose = require('mongoose');
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
-mongoose.set('useCreateIndex', true)
+mongoose.set('useCreateIndex', true);
+mongoose.set('useFindAndModify',false);
 
 
 mongoose.connect('mongodb://localhost:27017/team3mini').then((db)=>{
@@ -22,14 +21,6 @@ mongoose.connect('mongodb://localhost:27017/team3mini').then((db)=>{
 
 }).catch(err=> console.log(err));
 
-
-//session
-app.use(session({
-  saveUninitialized:true,
-  resave:true,
-  secret:'restore',
-  store:require('mongoose-session')(mongoose) // 세션들을 저장하는 데이터베이스
-})); // req에 session이라는 객체를 생성시켜 
 
 ////Middleware
 //cors 
