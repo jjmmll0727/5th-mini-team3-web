@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 
 exports.include = (req, res) => {
 
-    Category.findOne({ name: req.body.name })
+    Category.findOne({ _id: req.body.id })
         .then((category) => {
 
             Category.findOne({ user: req.userData }).then((user) => {
@@ -33,7 +33,7 @@ exports.include = (req, res) => {
 
         }).catch(err => {
             res.status(409).json({
-                code: 116, //카테고리 추가시, 이름 불러오기 오류
+                code: 116, //카테고리 추가시, _id 오류
                 message: "카테고리를 찾지 못하였습니다",
                 err: err
             });
@@ -44,7 +44,7 @@ exports.include = (req, res) => {
 
 
 exports.exclude = (req, res) => {
-    Category.findOne({ name: req.body.name })
+    Category.findOne({ _id: req.body.id })
     .then((category) => {
 
         Category.findOne({ user: req.userData }).then((user) => {
@@ -70,7 +70,7 @@ exports.exclude = (req, res) => {
 
     }).catch(err => {
         res.status(409).json({
-            code: 118, //카테고리 제외시, 이름 불러오기 오류
+            code: 118, //카테고리 제외시 _id 오류
             message: "카테고리를 찾지 못하였습니다",
             err: err
         });

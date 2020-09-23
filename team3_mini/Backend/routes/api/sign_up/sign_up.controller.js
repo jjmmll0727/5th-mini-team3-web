@@ -9,8 +9,8 @@ const User = require('../models/User');
 
 
 exports.register = (req, res, next) => {
-    const { userId, password, birth, email, phone, homephone } = req.body
-    if (!userId || !password || !birth || !email || !phone) {
+    const { userId, password, birth,name, email, phone, homephone } = req.body
+    if (!userId || !password || !birth || !email || !phone || !name) {
         res.status(409).json({
             code: 105, //필수 입력값 미입력
             message: '필수입력값이 입력되지 않았습니다'
@@ -27,7 +27,7 @@ exports.register = (req, res, next) => {
             }
 
             const newUser = new User({
-                userId, password, birth, email, phone, homephone
+                userId, password, birth,name, email, phone, homephone
                 // userId: req.body.userId,
                 // password: req.body.password,
                 // birth: req.body.birth,
