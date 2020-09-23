@@ -9,27 +9,21 @@ exports.include = (req, res) => {
 
     Category.findOne({ _id: req.body.id })
         .then((category) => {
-
-            Category.findOne({ user: req.userData }).then((user) => {
-                if (user) {
-                    res.status(409).json({
-                        code: 115, //이미 추가한 카테고리
-                        message: "이미 추가한 카테고리 입니다"
+            if (category.user.includes(req.userData)) {
+                res.status(409).json({
+                    code: 115, //이미 추가한 카테고리
+                    message: "이미 추가한 카테고리 입니다"
+                });
+            } else {
+                category.user.push(req.userData);
+                category.save().then(result => {
+                    res.status(201).json({
+                        code: 211, //카테고리 추가 성공
+                        message: "카테고리를 성공적으로 추가하였습니다",
+                        result: result
                     });
-                } else {
-                    category.user.push(req.userData);
-                    category.save().then(result => {
-                        res.status(201).json({
-                            code: 211, //카테고리 추가 성공
-                            message: "카테고리를 성공적으로 추가하였습니다",
-                            result: result
-                        });
-
-                    })
-
-                }
-
-            });
+                })
+            }
 
         }).catch(err => {
             res.status(409).json({
@@ -37,18 +31,15 @@ exports.include = (req, res) => {
                 message: "카테고리를 찾지 못하였습니다",
                 err: err
             });
+
         });
-
 };
-
 
 
 exports.exclude = (req, res) => {
     Category.findOne({ _id: req.body.id })
-    .then((category) => {
-
-        Category.findOne({ user: req.userData }).then((user) => {
-            if (!user) {
+        .then((category) => {
+            if (!category.user.includes(req.userData)) {
                 res.status(409).json({
                     code: 119, //이미 제외한 카테고리
                     message: "이미 제외한 카테고리 입니다"
@@ -61,20 +52,16 @@ exports.exclude = (req, res) => {
                         message: "카테고리를 성공적으로 제외하였습니다",
                         result: result
                     });
-
-                })
-
+                });
             }
 
+        }).catch(err => {
+            res.status(409).json({
+                code: 118, //카테고리 제외시 _id 오류
+                message: "카테고리를 찾지 못하였습니다",
+                err: err
+            });
         });
-
-    }).catch(err => {
-        res.status(409).json({
-            code: 118, //카테고리 제외시 _id 오류
-            message: "카테고리를 찾지 못하였습니다",
-            err: err
-        });
-    });
 }
 
 
@@ -82,19 +69,19 @@ exports.exclude = (req, res) => {
 
 ///////////////////////////////////////////
 
-exports.create = (req,res) => {
-    Category.findOne({name: req.body.name}).then(category=>{
-        if(category){
+exports.create = (req, res) => {
+    Category.findOne({ name: req.body.name }).then(category => {
+        if (category) {
             res.status(409).json({
-                message:"이미 존재하는 카테고리"
+                message: "이미 존재하는 카테고리"
             });
-        }else{
+        } else {
             const newCategory = new Category({
                 name: req.body.name
             });
-            newCategory.save().then((result)=>{
+            newCategory.save().then((result) => {
                 res.status(200).json({
-                    message:"카테고리 추가 성공"
+                    message: "카테고리 추가 성공"
                 });
             });
         };
