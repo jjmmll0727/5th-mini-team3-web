@@ -58,7 +58,8 @@ const SiteSchema = new Schema({
     }, // 비공개/공개 여부
 
     like : {
-        type: Number
+        type: Number,
+        default: 0
     } // 좋아요 수 
    
 
