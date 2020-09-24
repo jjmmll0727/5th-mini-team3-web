@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const SiteSchema = new Schema({
+
+    user: {
+        type: Schema.Types.ObjectId, 
+        ref: 'users'
+    },
     
     
     category : { // 카테고리 추가 시 생성되는 고유아이디

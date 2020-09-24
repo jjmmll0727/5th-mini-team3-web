@@ -11,7 +11,7 @@ router.get('/get', controller.get);
 router.put('/include', verifyToken, controller.include);
 router.put('/exclude', verifyToken, controller.exclude);
 /////////////////////
-router.post('/admin/create',controller.create);
+router.post('/admin/create', controller.create);
 
 
 module.exports = router

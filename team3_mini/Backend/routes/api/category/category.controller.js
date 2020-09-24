@@ -7,7 +7,8 @@ const jwt = require('jsonwebtoken');
 
 exports.include = (req, res) => {
 
-    Category.findOne({ _id: req.body.id })
+    Category.findOne({ _id: req.body.id }) // 카테고리 테이블 document 하나의 고유id값  postman으로 판단할 시 미리 세팅한 카테고리 테이블의 id값만 body에 있으면 가능
+                                            // userData는 token으로 넘어와 
         .then((category) => {
             if (category.user.includes(req.userData)) {
                 res.status(409).json({
