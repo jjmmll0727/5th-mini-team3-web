@@ -28,7 +28,7 @@ exports.create = (req, res) => {
                     const title = req.body.title;
                     const description = req.body.description;
                     const open = req.body.open;
-                    const like = req.body.like; // 처음에 default로 0으로 세팅해야 해
+                    // const like = req.body.like; // 처음에 default로 0으로 세팅해야 해
 
                     /*
                     const img = req.body.img;
@@ -53,7 +53,7 @@ exports.create = (req, res) => {
                     } // description와 img는 입력하지 않아도 상관 x
                     else {
                         const newSite = new Site({
-                            category, title, url, description, open, like //img, double_id, double_pw, date 
+                            category, title, url, description, open //img, double_id, double_pw, date 
                         });
                         newSite.save().then(result => {
                             res.status(201).json({
@@ -74,7 +74,8 @@ exports.create = (req, res) => {
                 }
 
 
-            }).catch((err)=>{
+            })
+            .catch((err)=>{
                 res.status(500).json({
                     code: 139, //사이트 추가시 MongoDB 에러
                     message: "서버측 에러입니다",
