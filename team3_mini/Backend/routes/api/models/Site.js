@@ -3,11 +3,6 @@ const Schema = mongoose.Schema;
 
 const SiteSchema = new Schema({
 
-    user: {
-        type: Schema.Types.ObjectId, 
-        ref: 'users'
-    },
-    
     
     category : { // 카테고리 추가 시 생성되는 고유아이디
                 // (사용자, 해당 사용자가 추가한 카테고리)에 대한 고유아이디값
