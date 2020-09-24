@@ -9,6 +9,7 @@ const Container = styled.header`
   display: block;
   position: fixed;
   padding: 20px 220px;
+  padding-top: 0;
   margin: 0px;
   top: 0px;
   left: 0px;
@@ -77,11 +78,11 @@ const ShowRank = styled.span`
 const Header = () => (
   <Container>
     <MemberWrapper>
-      <Link href="/">
+      <Link href="/login">
         <a className="membership">로그인</a>
       </Link>
       <a id="bar">｜</a>
-      <Link href="/">
+      <Link href="/register">
         <a className="membership">회원가입</a>
       </Link>
     </MemberWrapper>
