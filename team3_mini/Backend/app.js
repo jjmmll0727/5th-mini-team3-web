@@ -5,11 +5,15 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
 
+
+
 //Database
 const mongoose = require('mongoose');
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
-mongoose.set('useCreateIndex', true)
+mongoose.set('useCreateIndex', true);
+mongoose.set('useFindAndModify',false);
+
 
 mongoose.connect('mongodb://localhost:27017/team3mini').then((db)=>{
 
@@ -44,7 +48,6 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
 
 
 

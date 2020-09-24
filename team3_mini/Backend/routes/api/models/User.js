@@ -17,6 +17,12 @@ const UserSchema = new Schema({
         trim : true
         
     },
+    name : {
+
+        type: String,
+        required: true
+
+    },
     birth : {
         type: String,
         required: true,
@@ -47,4 +53,4 @@ const UserSchema = new Schema({
 
 });
 
-module.exports = mongoose.model('users',UserSchema);
+module.exports = mongoose.model('users', UserSchema);
