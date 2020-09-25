@@ -17,45 +17,31 @@ const s3 = new AWS.S3({
     region : 'AP-NorthEast-2'
 })
 
-const uploadfFile = (fileName) =>{
-    const fileContent = fs.readFileSync(fileName);
-    const param = {
-        'Bucket': 'restoreimage',
-        'ACL': 'public-read',
-        'Key': Date.now(),
-        'Body': 'fileContent'
-        //'ContentType':'file/png'
-    };
-    s3.upload(param, function(err, data){
-        console.log(err);
-        console.log(data);
-    });
-};
+// const uploadfFile = (fileName) =>{
+//     const fileContent = fs.readFileSync(fileName);
+//     const param = {
+//         'Bucket': 'restoreimage',
+//         'ACL': 'public-read',
+//         'Key': 'image/' + Date.now() + 'texttt.txt',
+//         'Body': 'fileContent'
+//         //'ContentType':'file/png'
+//     };
+//     s3.upload(param, function(err, data){
+//         console.log(err);
+//         console.log(data);
+//     });
+// };
 
-
-
-// const param = {
-//     'Bucket': 'restoreimage',
-//     'ACL': 'public-read',
-//     'Key': 'image/' + Date.now(),
-//     'Body': fs.createReadStream('C:\\Users\\jjmml\\Desktop\\moon.png'),
-//     'ContentType':'image/png'
-// }
-
-// s3.upload(param, function(err, data){
-//     console.log(err);
-//     console.log(data);
-// })
 
 
 exports.create = (req, res) => {
-    const category_id = req.body.category_id;
+    const category_id = req.body.category_id; // 카테고리테이블의 document의 고유id 
     const url = req.body.url;
     const title = req.body.title;
     const description = req.body.description;
     const open = req.body.open;
     const user_id = req.userData;
-    const file = req.body.file;
+    const file = req.body.file; // 로컬의 파일 위치가 담긴다.  
     // description와 img는 입력하지 않아도 상관 x
 
     //같은 유저가 같은 url을 입력하지 못하게 막음
@@ -88,14 +74,31 @@ exports.create = (req, res) => {
                     category_id, user_id, title, url, description, open //img, double_id, double_pw, date 
                 });
 
-                uploadfFile(file); // 파일업로드 
-
                 newSite.save().then(result => {
                     res.status(201).json({
                         code: 230, // 사이트 추가 성공
                         message: "사이트 추가 성공",
                         savedSite: newSite
                     });
+
+                    // newSite 저장하면서 _id로 파일명 설정하여 s3에 저장 -- start
+                    const uploadfFile = (fileName) =>{
+                        const fileContent = fs.readFileSync(fileName);
+                        const param = {
+                            'Bucket': 'restoreimage',
+                            'ACL': 'public-read',
+                            'Key': 'image/' + newSite._id + '.txt',
+                            'Body': 'fileContent'
+                            //'ContentType':'file/png'
+                        };
+                        s3.upload(param, function(err, data){
+                            console.log(err);
+                            console.log(data);
+                        });
+                    };
+                    uploadfFile(file);
+                    // end
+
                 }).catch(err => {
                     console.log(err);
                     res.status(500).json({
@@ -139,3 +142,20 @@ exports.delete = (req,res)=>{
     })
 };
 
+// exports.download = (req, res) => {
+//     const downloadFile = (fileName) => {
+//         const params = {
+//             'Bucket': 'restoreimage',
+//             //'ACL': 'public-read',
+//             'Key': 'image/' + req.body.id + 'txt', // req.body.id --> site table의 고유id --> req에 업로드한 파일의 해당 사이트 고유id가 필요해 
+//             //'Body': 'fileContent' 
+//         };
+//         s3.getObject(params, function(err, data){
+//             if(err){
+//                 throw err;
+//             }
+//             fs.writeFileSync(fileName, data.Body.toString());
+//         });
+//     };
+//     downloadFile('image/' + newSite._id + 'text.txt').then(result)
+// }

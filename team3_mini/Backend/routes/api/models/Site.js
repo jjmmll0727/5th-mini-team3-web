@@ -31,10 +31,7 @@ const SiteSchema = new Schema({
         required: true
     },
 
-    
-    file : { 
-        type: String
-    },
+   
     
     /*
     double_id : {
