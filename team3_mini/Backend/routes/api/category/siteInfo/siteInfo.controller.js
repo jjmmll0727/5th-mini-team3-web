@@ -9,7 +9,7 @@ const Category = require('../../models/Categories');
 //s3 연동
 const AWS = require('aws-sdk');
 const fs = require('fs');
-require('dotenv').config({path:__dirname + '\\' + '.env'});
+//require('dotenv').config({path:__dirname + '\\' + '.env'});
 
 const s3 = new AWS.S3({
     accessKeyId: 'AKIAI2C3D5YENEYRL4ZA',
