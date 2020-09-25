@@ -54,7 +54,7 @@ exports.register = (req, res, next) => {
                     }).catch((err) => {
                         console.log(err);
                         res.status(500).json({
-                            code: 110, //해싱 에러
+                            code: 110, //회원가입 에러
                             error: "서버 측에서 발생한 에러입니다."
 
                         });
