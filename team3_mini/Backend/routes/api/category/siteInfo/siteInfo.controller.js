@@ -70,3 +70,23 @@ exports.create = (req, res) => {
 
 }
 
+exports.delete = (req,res)=>{
+
+    Site.deleteOne({_id : req.body.id}).then(
+        result =>{
+            res.status(200).json({
+                code: 231, //사이트 삭제 성공
+                message: "사이트를 성공적으로 삭제하였습니다",
+                result : result
+            })
+
+        }
+    ).catch((err)=>{
+        res.status(500).json({
+            code: 136, //사이트 db _id 오류
+            message: "서버측 에러입니다",
+            err:err
+        })
+
+    })
+};
