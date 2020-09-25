@@ -6,6 +6,30 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Site = require('../../models/Site');
 const Category = require('../../models/Categories');
+//s3 연동
+const AWS = require('aws-sdk');
+const fs = require('fs');
+require('dotenv').config({path:__dirname + '\\' + '.env'});
+
+const s3 = new AWS.S3({
+    accessKeyId: 'AKIAI2C3D5YENEYRL4ZA',
+    secretAccessKey: '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',
+    region : 'AP-NorthEast-2'
+})
+
+const param = {
+    'Bucket': 'restoreimage',
+    'ACL': 'public-read',
+    'Key': 'image/' + Date.now(),
+    'Body': fs.createReadStream('C:\\Users\\jjmml\\Desktop\\moon.png'),
+    'ContentType':'image/png'
+}
+
+s3.upload(param, function(err, data){
+    console.log(err);
+    console.log(data);
+})
+
 
 exports.create = (req, res) => {
     const category_id = req.body.category_id;
@@ -69,4 +93,25 @@ exports.create = (req, res) => {
     }
 
 }
+
+exports.delete = (req,res)=>{
+
+    Site.deleteOne({_id : req.body.id}).then( // req.body.id --> 사이트의 id
+        result =>{
+            res.status(200).json({
+                code: 231, //사이트 삭제 성공
+                message: "사이트를 성공적으로 삭제하였습니다",
+                result : result
+            })
+
+        }
+    ).catch((err)=>{
+        res.status(500).json({
+            code: 136, //사이트 db _id 오류
+            message: "서버측 에러입니다",
+            err:err
+        })
+
+    })
+};
 
