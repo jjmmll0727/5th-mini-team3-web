@@ -17,18 +17,35 @@ const s3 = new AWS.S3({
     region : 'AP-NorthEast-2'
 })
 
-const param = {
-    'Bucket': 'restoreimage',
-    'ACL': 'public-read',
-    'Key': 'image/' + Date.now(),
-    'Body': fs.createReadStream('C:\\Users\\jjmml\\Desktop\\moon.png'),
-    'ContentType':'image/png'
-}
+const uploadfFile = (fileName) =>{
+    const fileContent = fs.readFileSync(fileName);
+    const param = {
+        'Bucket': 'restoreimage',
+        'ACL': 'public-read',
+        'Key': Date.now(),
+        'Body': 'fileContent'
+        //'ContentType':'file/png'
+    };
+    s3.upload(param, function(err, data){
+        console.log(err);
+        console.log(data);
+    });
+};
 
-s3.upload(param, function(err, data){
-    console.log(err);
-    console.log(data);
-})
+
+
+// const param = {
+//     'Bucket': 'restoreimage',
+//     'ACL': 'public-read',
+//     'Key': 'image/' + Date.now(),
+//     'Body': fs.createReadStream('C:\\Users\\jjmml\\Desktop\\moon.png'),
+//     'ContentType':'image/png'
+// }
+
+// s3.upload(param, function(err, data){
+//     console.log(err);
+//     console.log(data);
+// })
 
 
 exports.create = (req, res) => {
@@ -38,10 +55,14 @@ exports.create = (req, res) => {
     const description = req.body.description;
     const open = req.body.open;
     const user_id = req.userData;
+    const file = req.body.file;
     // description와 img는 입력하지 않아도 상관 x
 
     //같은 유저가 같은 url을 입력하지 못하게 막음
     //다른 유저가 같은 url 입력하는건 ㄱㅊ
+    
+    
+
     if (!category_id || !url || !title || !description || !open) {
         res.status(409).json({
             code: 131, // 사이트추가시, 필수 입력값 미입력
@@ -66,6 +87,9 @@ exports.create = (req, res) => {
                 const newSite = new Site({
                     category_id, user_id, title, url, description, open //img, double_id, double_pw, date 
                 });
+
+                uploadfFile(file); // 파일업로드 
+
                 newSite.save().then(result => {
                     res.status(201).json({
                         code: 230, // 사이트 추가 성공

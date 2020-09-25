@@ -31,13 +31,12 @@ const SiteSchema = new Schema({
         required: true
     },
 
-    /*
-    img : { 
-        data: Buffer, 
-        contentType: String,
+    
+    file : { 
+        type: String
     },
     
-    
+    /*
     double_id : {
         type: String,
         required: true,
