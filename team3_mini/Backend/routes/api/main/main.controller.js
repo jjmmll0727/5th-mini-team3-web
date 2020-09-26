@@ -16,7 +16,7 @@ exports.show = (req, res) => {
             Category.find({}).lean().
                 then(categories => {
 
-                    res.send(200).json({
+                    res.status(200).json({
                         sites: sites,
                         categories: categories,
                         userData: req.userData
