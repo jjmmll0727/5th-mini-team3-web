@@ -6,12 +6,17 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Site = require('../../models/Site');
 const Category = require('../../models/Categories');
-//s3 연동
-const AWS = require('aws-sdk');
-const fs = require('fs');
-//require('dotenv').config({path:__dirname + '\\' + '.env'});
 
-const s3 = new AWS.S3({
+// file download from s3
+const Minio = require('minio');
+const stream = require('stream');
+
+const fs = require('fs');
+const s3_download = require('../../config/s3.config');
+const AWS = require('aws-sdk');
+const { EnvironmentCredentials } = require('aws-sdk');
+
+const s3_upload = new AWS.S3({
     accessKeyId: 'AKIAI2C3D5YENEYRL4ZA',
     secretAccessKey: '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',
     region : 'AP-NorthEast-2'
@@ -88,10 +93,10 @@ exports.create = (req, res) => {
                             'Bucket': 'restoreimage',
                             'ACL': 'public-read',
                             'Key': 'image/' + newSite._id + '.txt',
-                            'Body': 'fileContent'
+                            'Body': fileContent // s3에 업로드 되는 파일 
                             //'ContentType':'file/png'
                         };
-                        s3.upload(param, function(err, data){
+                        s3_upload.upload(param, function(err, data){
                             console.log(err);
                             console.log(data);
                         });
@@ -142,20 +147,16 @@ exports.delete = (req,res)=>{
     })
 };
 
-// exports.download = (req, res) => {
-//     const downloadFile = (fileName) => {
-//         const params = {
-//             'Bucket': 'restoreimage',
-//             //'ACL': 'public-read',
-//             'Key': 'image/' + req.body.id + 'txt', // req.body.id --> site table의 고유id --> req에 업로드한 파일의 해당 사이트 고유id가 필요해 
-//             //'Body': 'fileContent' 
-//         };
-//         s3.getObject(params, function(err, data){
-//             if(err){
-//                 throw err;
-//             }
-//             fs.writeFileSync(fileName, data.Body.toString());
-//         });
-//     };
-//     downloadFile('image/' + newSite._id + 'text.txt').then(result)
-// }
+exports.download = (req, res) => {
+    const s3Client = s3_download.s3Client;
+    const params = s3_download.downloadParams;
+
+    params.key = req.params.id + '.txt';
+
+    s3Client.getObject(params).createReadStream().on('error', function(err){
+        res.status(500).json({
+            error: "error -> " + err
+        });
+    }).pipe(res);
+}
+

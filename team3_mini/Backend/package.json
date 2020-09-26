@@ -14,13 +14,15 @@
     "express": "^4.17.1",
     "http-errors": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
+    "minio": "^7.0.16",
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.5",
     "mongoose-session": "0.0.4",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "path": "^0.12.7",
-    "pug": "^3.0.0"
+    "pug": "^3.0.0",
+    "stream": "0.0.2"
   },
   "devDependencies": {},
   "scripts": {

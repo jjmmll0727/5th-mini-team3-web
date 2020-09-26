@@ -6,10 +6,10 @@ const {verifyToken} = require('../../middleware/jwt-verify');
 // exports.OOO(verifytoken,(req, res) => 형태로 사용하면됩니다!
 
 
+
 router.post('/create', verifyToken, controller.create);
 router.delete('/delete',verifyToken, controller.delete);
-
-//router.post('/download', verifyToken, controller.download);
+router.get('/download/:id', verifyToken, controller.download);
 
 
 module.exports = router

@@ -7,7 +7,6 @@ const Category = require('../models/Categories');
 const jwt = require('jsonwebtoken');
 
 
-
 exports.show = (req, res) => {
 
     Site.find({}).lean().
@@ -16,7 +15,7 @@ exports.show = (req, res) => {
             Category.find({}).lean().
                 then(categories => {
 
-                    res.status(200).json({
+                    res.status(200).json({ // res.send --> 중복이라 if) send이면  error 200이라는 http status를 전송하고 json을 또 전송 --> status에 대해서 ok 가 뜬다
                         sites: sites,
                         categories: categories,
                         userData: req.userData
