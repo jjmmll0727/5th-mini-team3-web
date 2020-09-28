@@ -5,7 +5,7 @@ module.exports = {
     verifyToken: function (req, res, next) {
         // console.log('req.header : ', req.headers)
         // const token = req.cookies['authorization']
-        const token = req.headers['authorization'];  
+        const token = req.headers['authorization'];
 
         if (token == null) {
             return res.status(401).json({

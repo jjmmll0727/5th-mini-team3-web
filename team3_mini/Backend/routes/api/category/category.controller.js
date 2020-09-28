@@ -56,7 +56,7 @@ exports.exclude = (req, res) => {
             }
 
         }).catch(err => {
-            res.status(409).json({
+            res.status(500).json({
                 code: 118, //카테고리 제외시 _id 오류
                 message: "카테고리를 찾지 못하였습니다",
                 err: err

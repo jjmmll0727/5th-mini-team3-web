@@ -15,6 +15,11 @@ const SiteSchema = new Schema({
         ref: 'users'
     },
 
+    like_user_id:[{
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+    }],
+
     title : {
         type: String,
         required: true,
@@ -31,13 +36,9 @@ const SiteSchema = new Schema({
         required: true
     },
 
+   
+    
     /*
-    img : { 
-        data: Buffer, 
-        contentType: String,
-    },
-    
-    
     double_id : {
         type: String,
         required: true,
