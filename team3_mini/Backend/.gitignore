@@ -1,5 +1,6 @@
 .env
 
 node_modules
+.routes/api/config/s3.config
 
 .next

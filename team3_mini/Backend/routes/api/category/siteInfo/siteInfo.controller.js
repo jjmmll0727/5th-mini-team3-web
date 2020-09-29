@@ -12,15 +12,20 @@ const Minio = require('minio');
 const stream = require('stream');
 
 const fs = require('fs');
-const s3_download = require('../../config/s3.config');
+const s3 = require('../../config/s3.config');
 const AWS = require('aws-sdk');
 const { EnvironmentCredentials } = require('aws-sdk');
 
-const s3_upload = new AWS.S3({
-    accessKeyId: 'AKIAI2C3D5YENEYRL4ZA',
-    secretAccessKey: '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',
-    region : 'AP-NorthEast-2'
-})
+// const s3_upload = new AWS.S3({
+//     accessKeyId: 'AKIAI2C3D5YENEYRL4ZA',
+//     secretAccessKey: '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',
+//     region : 'AP-NorthEast-2'
+// })
+
+const downloadParams = {
+    Bucket: 'restorimage',
+    Key:''
+};
 
 // const uploadfFile = (fileName) =>{
 //     const fileContent = fs.readFileSync(fileName);
@@ -96,7 +101,7 @@ exports.create = (req, res) => {
                             'Body': fileContent // s3에 업로드 되는 파일 
                             //'ContentType':'file/png'
                         };
-                        s3_upload.upload(param, function(err, data){
+                        s3.s3Client.upload(param, function(err, data){
                             console.log(err);
                             console.log(data);
                         });
@@ -148,8 +153,8 @@ exports.delete = (req,res)=>{
 };
 
 exports.download = (req, res) => {
-    const s3Client = s3_download.s3Client;
-    const params = s3_download.downloadParams;
+    const s3Client = s3.s3Client;
+    const params = s3.downloadParams;
 
     params.key = req.params.id + '.txt';
 
@@ -161,11 +166,11 @@ exports.download = (req, res) => {
 }
 
 exports.like = (req,res)=>{
-    Site.findOne({_id : req.body.id})
+    Site.findOne({_id : req.body.id}) // 내가 좋아요를 누를지 말지 정하는 사이트 --> site table의 
     .then((site) => {
         
         if (site.like_user_id.includes(req.userData)) {
-            site.like = site.like - 1;
+            site.like = site.like - 1; // 좋아요 누른거를 다시 누르면 좋아요 해제 --> site테이블에서 like_user_id 속성에서 userData 제외
             site.like_user_id.pull(req.userData);
             site.save().then(result =>{
                 res.status(200).json({
@@ -175,7 +180,7 @@ exports.like = (req,res)=>{
                 });
             })
             
-        } else {
+        } else { // 내가 좋아요를 누르지 않았다면 
             site.like_user_id.push(req.userData);
             site.like = site.like + 1;
             site.save().then(result =>{
