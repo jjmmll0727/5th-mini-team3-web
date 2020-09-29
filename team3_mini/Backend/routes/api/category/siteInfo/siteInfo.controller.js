@@ -152,7 +152,7 @@ exports.delete = (req,res)=>{
     })
 };
 
-exports.download = (req, res) => {
+exports.download = (req, res) => { // 수정필요
     const s3Client = s3.s3Client;
     const params = s3.downloadParams;
 
