@@ -1,6 +1,6 @@
 .env
 
 node_modules
-routes/api/config
+config
 
 .next
