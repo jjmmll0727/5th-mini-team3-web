@@ -9,7 +9,7 @@ const {verifyToken} = require('../../middleware/jwt-verify');
 
 router.post('/create', verifyToken, controller.create);
 router.delete('/delete',verifyToken, controller.delete);
-router.get('/download/:id', verifyToken, controller.download);
+router.post('/download', verifyToken, controller.download);
 router.put('/like',verifyToken,controller.like);
 
 

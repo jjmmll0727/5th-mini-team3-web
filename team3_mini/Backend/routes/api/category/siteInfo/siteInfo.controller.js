@@ -22,11 +22,6 @@ const { EnvironmentCredentials } = require('aws-sdk');
 //     region : 'AP-NorthEast-2'
 // })
 
-const downloadParams = {
-    Bucket: 'restorimage',
-    Key:''
-};
-
 // const uploadfFile = (fileName) =>{
 //     const fileContent = fs.readFileSync(fileName);
 //     const param = {
@@ -152,17 +147,15 @@ exports.delete = (req,res)=>{
     })
 };
 
-exports.download = (req, res) => { // 수정필요
+exports.download = (req, res) => { // id --> 업로드된 파일의 이름(site의 id+txt와 동일해)
+    console.log('tttttttt')
     const s3Client = s3.s3Client;
-    const params = s3.downloadParams;
+    const file = require('fs').createWriteStream('testing.txt'); // 다운받아올 이름?
+    const params = {Bucket:'restoreimage', Key: 'image/' + req.body.id + '.txt'};
+    console.log(params)
+    const result = s3Client.getObject(params).createReadStream().pipe(file);
+    res.send(result)
 
-    params.key = req.params.id + '.txt';
-
-    s3Client.getObject(params).createReadStream().on('error', function(err){
-        res.status(500).json({
-            error: "error -> " + err
-        });
-    }).pipe(res);
 }
 
 exports.like = (req,res)=>{
