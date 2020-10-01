@@ -148,14 +148,18 @@ exports.delete = (req,res)=>{
 };
 
 exports.download = (req, res) => { // id --> 업로드된 파일의 이름(site의 id+txt와 동일해)
-    console.log('tttttttt')
+    //console.log('tttttttt')
     const s3Client = s3.s3Client;
-    const file = require('fs').createWriteStream('testing.txt'); // 다운받아올 이름?
+    const file = require('fs').createWriteStream('routes/api/category/siteInfo/testing2.txt'); // 다운받아올 이름?
+    file.on('finish', function () {
+        console.log('파일 쓰기 완료');
+    });
     const params = {Bucket:'restoreimage', Key: 'image/' + req.body.id + '.txt'};
-    console.log(params)
-    s3Client.getObject(params).createReadStream().pipe(file);
-    fs.readFile('./testing.txt', 'utf8', function(err, data){ // path가 이상해!!!!!!!!!!!!!!
-        console.log(data);
+    //console.log(params)
+    const result = s3Client.getObject(params).createReadStream().pipe(file);
+    //res.send();
+    fs.readFile('./testing2.txt', 'utf8', function(err, data){ // path가 이상해!!!!!!!!!!!!!!
+        //console.log(data);
         res.send(data);
     });
     
