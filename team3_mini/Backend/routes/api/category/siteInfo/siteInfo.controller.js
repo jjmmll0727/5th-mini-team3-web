@@ -153,8 +153,12 @@ exports.download = (req, res) => { // id --> 업로드된 파일의 이름(site�
     const file = require('fs').createWriteStream('testing.txt'); // 다운받아올 이름?
     const params = {Bucket:'restoreimage', Key: 'image/' + req.body.id + '.txt'};
     console.log(params)
-    const result = s3Client.getObject(params).createReadStream().pipe(file);
-    res.send(result)
+    s3Client.getObject(params).createReadStream().pipe(file);
+    fs.readFile('./testing.txt', 'utf8', function(err, data){ // path가 이상해!!!!!!!!!!!!!!
+        console.log(data);
+        res.send(data);
+    });
+    
 
 }
 
