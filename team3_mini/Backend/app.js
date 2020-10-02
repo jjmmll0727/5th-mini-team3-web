@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
+const dotenv = require('dotenv');
 
 
 
@@ -26,6 +27,9 @@ mongoose.connect('mongodb://localhost:27017/team3mini').then((db)=>{
 //cors 
 const cors = require('cors');
 app.use(cors());
+
+//env
+dotenv.config();
 
 //body Parser 
 const bodyParser = require('body-parser');
