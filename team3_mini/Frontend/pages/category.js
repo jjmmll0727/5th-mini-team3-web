@@ -95,6 +95,9 @@ const Category = () => {
               <Button size="large" shape="round" onClick={() => setShow(true)}>
                 사이트 목록
               </Button>
+              <Button size="large" shape="round" onClick={() => setShow(true)}>
+                좋아요 리스트
+              </Button>
               <Button size="large" shape="round">
                 랭킹
               </Button>

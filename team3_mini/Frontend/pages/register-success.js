@@ -35,7 +35,7 @@ const AfterRegister = () => (
       <span
         style={{
           textAlign: "center",
-          color: "#767676",
+          color: "#113358",
           font: "normal normal bold 48px/60px Noto Sans CJK KR",
           margin: "20px",
         }}
@@ -64,21 +64,15 @@ const AfterRegister = () => (
         style={{
           width: "280px",
           height: "75px",
-          backgroundColor: "#BBBBBB",
-          border: "none",
+          backgroundColor: "#FFFFFF",
+          border: "1px solid #113358",
           borderRadius: "10px",
         }}
       >
-        <Link
-          href="/"
-          style={{
-            color: "#FFFFFF",
-            font: "normal normal bold 22px/33px Noto Sans CJK KR",
-          }}
-        >
+        <Link href="/">
           <a
             style={{
-              color: "#FFFFFF",
+              color: "#113358",
               font: "normal normal bold 22px/33px Noto Sans CJK KR",
             }}
           >
@@ -90,7 +84,7 @@ const AfterRegister = () => (
         style={{
           width: "280px",
           height: " 75px",
-          backgroundColor: "#767676",
+          backgroundColor: "#113358",
           border: "none",
           borderRadius: "10px",
         }}
