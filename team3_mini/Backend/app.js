@@ -58,7 +58,7 @@ app.use('/users', usersRouter);
 // catch 404 and forward to error handler
 //Handling error
 app.use((req,res,next)=>{
-  const error = new Error('Not found');
+  const error = new Error('Wrong Api Route');
   error.status = 404;
   next(error);
 
@@ -70,10 +70,7 @@ app.use((error,req,res,next)=>{
       error:{
          message: error.message
       }
-
   });
-
-
 });
 
 module.exports = app;

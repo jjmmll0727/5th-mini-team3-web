@@ -61,6 +61,13 @@ const SiteSchema = new Schema({
         type: Number,
         default: 0
     } // 좋아요 수 
+    ,
+    time : {
+
+        type: Date,
+        default: Date.now()
+        
+    }
    
 
 });

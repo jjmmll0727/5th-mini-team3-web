@@ -52,9 +52,8 @@ exports.create = (req, res) => {
     //같은 유저가 같은 url을 입력하지 못하게 막음
     //다른 유저가 같은 url 입력하는건 ㄱㅊ
     
-    
 
-    if (!category_id || !url || !title || !description || !open) {
+    if (!category_id || !url || !title || !description || open === null) {
         res.status(409).json({
             code: 131, // 사이트추가시, 필수 입력값 미입력
             message: "필수 입력값이 누락되었습니다"
@@ -87,22 +86,22 @@ exports.create = (req, res) => {
                     });
 
                     // newSite 저장하면서 _id로 파일명 설정하여 s3에 저장 -- start
-                    const uploadfFile = (fileName) =>{
-                        const fileContent = fs.readFileSync(fileName);
-                        const param = {
-                            'Bucket': 'restoreimage',
-                            'ACL': 'public-read',
-                            'Key': 'image/' + newSite._id + '.txt',
-                            'Body': fileContent // s3에 업로드 되는 파일 
-                            //'ContentType':'file/png'
-                        };
-                        s3.s3Client.upload(param, function(err, data){
-                            console.log(err);
-                            console.log(data);
-                        });
-                    };
-                    uploadfFile(file);
-                    // end
+                    // const uploadfFile = (fileName) =>{
+                    //     const fileContent = fs.readFileSync(fileName);
+                    //     const param = {
+                    //         'Bucket': 'restoreimage',
+                    //         'ACL': 'public-read',
+                    //         'Key': 'image/' + newSite._id + '.txt',
+                    //         'Body': fileContent // s3에 업로드 되는 파일 
+                    //         //'ContentType':'file/png'
+                    //     };
+                    //     s3.s3Client.upload(param, function(err, data){
+                    //         console.log(err);
+                    //         console.log(data);
+                    //     });
+                    // };
+                    // uploadfFile(file);
+                    // // end
 
                 }).catch(err => {
                     console.log(err);
@@ -211,4 +210,6 @@ exports.like = (req,res)=>{
         });
     })
 }
+
+
 

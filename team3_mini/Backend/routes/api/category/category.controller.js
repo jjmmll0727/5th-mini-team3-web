@@ -15,7 +15,7 @@ exports.include = (req, res) => {
                     message: "이미 추가한 카테고리 입니다"
                 });
             } else {
-                category.user.push(req.userData);
+                category.user.push(req.userData)
                 category.save().then(result => {
                     res.status(201).json({
                         code: 211, //카테고리 추가 성공
@@ -28,7 +28,7 @@ exports.include = (req, res) => {
         }).catch(err => {
             res.status(409).json({
                 code: 116, //카테고리 추가시, _id 오류
-                message: "카테고리를 찾지 못하였습니다",
+                message: "카테고리를 추가하지 못하였습니다",
                 err: err
             });
 
