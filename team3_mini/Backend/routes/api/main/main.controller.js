@@ -31,6 +31,7 @@ exports.all_rank_title = (req, res) => {
 
 
 
+
 exports.categories = (req, res) => {
 
     Category.find({}).lean()
