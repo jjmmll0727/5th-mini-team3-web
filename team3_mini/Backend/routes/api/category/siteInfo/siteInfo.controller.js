@@ -43,31 +43,53 @@ exports.create = (req, res) => {
                     message: "사용자가 이미 추가한 url입니다"
                 })
             } else {
-                const files = req.files.map((files) => {
-                    return files.key
-                })
+                if (!req.files) {
+                    const newSite = new Site({
+                        category_id, user_id, title, url, description, open
+                    });
+                    newSite.save().then(result => {
+                        res.status(201).json({
+                            code: 230, // 사이트 추가 성공
+                            message: "사이트 추가 성공",
+                            savedSite: newSite
+                        });
 
-                const newSite = new Site({
-                    category_id, user_id, title, url, description, open,
-                    files //img, double_id, double_pw, date 
-                });
 
-                newSite.save().then(result => {
-                    res.status(201).json({
-                        code: 230, // 사이트 추가 성공
-                        message: "사이트 추가 성공",
-                        savedSite: newSite
+                    }).catch(err => {
+                        // console.log(err);
+                        res.status(500).json({
+                            code: 130, // 사이트 저장 실패
+                            message: "서버측 에러입니다",
+                            error: err
+                        });
+                    })
+                } else {
+
+                    const files = req.files.map((files) => {
+                        return files.key
+                    })
+                    const newSite = new Site({
+                        category_id, user_id, title, url, description, open,
+                        files //img, double_id, double_pw, date 
                     });
 
+                    newSite.save().then(result => {
+                        res.status(201).json({
+                            code: 230, // 사이트 추가 성공
+                            message: "사이트 추가 성공",
+                            savedSite: newSite
+                        });
 
-                }).catch(err => {
-                    // console.log(err);
-                    res.status(500).json({
-                        code: 130, // 사이트 저장 실패
-                        message: "서버측 에러입니다",
-                        error: err
-                    });
-                })
+
+                    }).catch(err => {
+                        // console.log(err);
+                        res.status(500).json({
+                            code: 130, // 사이트 저장 실패
+                            message: "서버측 에러입니다",
+                            error: err
+                        });
+                    })
+                }
             }
 
         }).catch((err) => {
@@ -147,7 +169,9 @@ exports.download = (req, res) => { // id --> 업로드된 파일의 이름(site�
     // console.log(s3)
     //const result = 
     s3.getObject(params).createReadStream().on('error', (err) => {
-        res.status(500).json({
+        res.status(409).json({
+            code: 132,
+            message : "서버측 오류입니다",
             error: err
         })
     }).pipe(res);
