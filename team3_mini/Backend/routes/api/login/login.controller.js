@@ -34,8 +34,6 @@ exports.login =( (req, res) => {
                                 token: token
                                 
                             });
-                            redirect('/');
-                            
                         })
 
                     } else {
