@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import propTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 const StyledCard = styled.div`
   a{
@@ -34,7 +34,7 @@ const StyledCard = styled.div`
   }
 `;
 
-const Card = ({ href ,title, imgsrc, content }) => {
+const Card = ({ href ,title, imgsrc, content }) => { 
   return (
     <StyledCard>
       <a href={href} target="_blank" rel="noreferrer noopener">
@@ -42,6 +42,7 @@ const Card = ({ href ,title, imgsrc, content }) => {
         <img src={imgsrc} />
         <ul>
           {content[0] ? content.map((data,index) => (<li key={index}>{data}</li>)) : <span>내용이 없습니다.</span>}
+
         </ul>
       </a>
 
@@ -49,11 +50,11 @@ const Card = ({ href ,title, imgsrc, content }) => {
   );
 };
 
-Card.PropTypes = {
-  href: propTypes.string.isRequired,
-  title: propTypes.string.isRequired,
-  imgsrc: propTypes.string.isRequired,
-  content: propTypes.array.isRequired
+Card.propTypes = {
+  href: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  imgsrc: PropTypes.string.isRequired,
+  content: PropTypes.array.isRequired
 }
 
 export default Card;

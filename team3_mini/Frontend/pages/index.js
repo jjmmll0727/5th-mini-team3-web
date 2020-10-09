@@ -1,86 +1,95 @@
 import React from "react";
-import { Row, Col } from "antd";
-import shortid from "shortid";
-import faker from "faker";
-
 import styled from "@emotion/styled";
-import Card from "../components/Card";
+import { Carousel, Row, Col } from "antd";
 
-const StyledHome = styled.div`
-  font-family: Noto Sans CJK KR;
+const StyledMain = styled.div`
+  background: #bbbbbb;
+  height: 801px;
+  margin: auto;
+  top: 50%;
   margin-top: 200px;
-  color: #767676;
-  .main {
-    padding-left: 50px;
-    > h2 {
-      font-size: 15px;
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-weight: bolder;
-    }
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    border-right: 1px solid #bbbbbb;
-    li {
+
+  button {
+    width: 165px;
+    height: 59px;
+    background-color: #eeeeee;
+    border: none;
+    border-radius: 10px;
+    margin-top: 100px;
+    float: left;
+    margin-left: 500px;
+    span {
       font-size: 18px;
-      margin-bottom: 30px;
+      color: #767676;
     }
   }
 `;
 
-const cardDataDummy = Array(10)
-  .fill(0)
-  .map(() => ({
-    id: shortid.generate(),
-    title: faker.name.findName(),
-    imgsrc: faker.image.image(510, 136),
-    content: Array(faker.random.number(3)).fill(0).map(() => (
-      faker.lorem.sentence()
-    )),
-    href: faker.internet.url()
-  }));
+const StyledContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 200px;
+  margin-left: 500px;
+  .Carousel {
+    display: flex;
+    flex-direction: column;
+    span:nth-of-type(1) {
+      color: #767676;
 
-const Home = () => {
+      font: normal normal normal 36px/75px Noto Sans CJK KR;
+    }
+    span:nth-of-type(2) {
+      color: #767676;
+      font: normal normal 900 48px/75px Noto Sans CJK KR;
+    }
+    span:nth-of-type(3) {
+      color: #767676;
+      font: normal normal 900 48px/75px Noto Sans CJK KR;
+    }
+  }
+`;
+
+const Main = () => {
   return (
-    <StyledHome>
+    <StyledMain>
       <Row>
-        <Col md={6}></Col>
         <Col md={12}>
-          <Row>
-            <Col md={4}>
-              <ul>
-                <li style={{ fontWeight: "bolder" }}>ALL</li>
-                <li>과제/발표</li>
-                <li>논문</li>
-                <li>디자인</li>
-                <li>쇼핑</li>
-                <li>여행</li>
-                <li>추가</li>
-              </ul>
-            </Col>
-            <Col className="main" md={20}>
-              <h2>김삼삼님의 사이트</h2>
-              <h1>ALL</h1>
-              <div style={{
-                display: "flex",
-                flexWrap: "wrap",
-                minWidth: "700px"
-              }}>
-                {cardDataDummy.map((data) => (
-                  <Card key={data.id} href={data.href} content={data.content} title={data.title} imgsrc={data.imgsrc} />
-                ))}
+          <Carousel autoplay>
+            <StyledContent>
+              <div className="Carousel">
+                <span>계정만 있으면</span>
+                <span>언제 어디서나</span>
+                <span> 내가 저장한 사이트를 확인!</span>
               </div>
-            </Col>
-          </Row>
+            </StyledContent>
+            <StyledContent>
+              <div className="Carousel">
+                <span>다른 사람들이</span>
+                <span>많이 사용하는 분야별 사이트를</span>
+                <span> 순위로 한눈에!</span>
+              </div>
+            </StyledContent>
+          </Carousel>
+          <button>
+            <span>시작하기</span>
+          </button>
         </Col>
-        <Col md={6}></Col>
+        <Col md={12}>
+          <img
+            style={{
+              background: "#EEEEEE",
+              borderRadius: "50%",
+              width: "502px",
+              height: "502px",
+              margin: "0px auto",
+              float: "left",
+              marginTop: "150px",
+            }}
+            src=""
+          />
+        </Col>
       </Row>
-    </StyledHome>
+    </StyledMain>
   );
 };
-
-export default Home;
+export default Main;

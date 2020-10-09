@@ -95,7 +95,7 @@ const Header = () => (
       <Link href="/">
         <a className="menu">사이트 소개</a>
       </Link>
-      <Link href="/">
+      <Link href="/mysites/main/ALL">
         <a className="menu">나의 사이트</a>
       </Link>
     </Menu>

@@ -1,11 +1,17 @@
 import { produce } from "immer";
-import { GET_SITES_FAILURE, GET_SITES_REQUEST, GET_SITES_SUCCESS } from "../actions";
+import { GET_SITES_FAILURE, GET_SITES_REQUEST, GET_SITES_SUCCESS,
+         GET_CATEGORY_FAILURE, GET_CATEGORY_REQUEST, GET_CATEGORY_SUCCESS
+} from "../actions";
 
 const initialState = {
-  Websites: [],
-  getSitesLoading: false, // 로그인 로딩
+  currentWebsites: [],
+  Categories: [],
+  getSitesLoading: false, // 사이트
   getSitesDone: false,
   getSitesError: null,
+  getCategoryLoading: false, // 카테고리
+  getCategoryDone: false,
+  getCategoryError: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,11 +23,22 @@ const reducer = (state = initialState, action) => {
       case GET_SITES_SUCCESS:
         draft.getSitesLoading = false;
         draft.getSitesDone = true;
-        draft.Websites = action.data;
+        draft.currentWebsites = action.data;
         break;
       case GET_SITES_FAILURE:
         draft.getSitesLoading = false;
         draft.getSitesError = action.data;
+      case GET_CATEGORY_REQUEST:
+        draft.getCategoryLoading = true;
+        break;
+      case GET_CATEGORY_SUCCESS:
+        draft.getCategoryLoading = false;
+        draft.getCategoryDone = true;
+        draft.Categories = action.data;
+        break;
+      case GET_CATEGORY_FAILURE:
+        draft.getCategoryDone = false;
+        draft.getCategoryError = action.data;
       default:
         break;
     }

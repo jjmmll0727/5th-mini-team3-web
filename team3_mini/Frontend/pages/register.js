@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-import redirect from "nextjs-redirect";
 
-import { Form, Input, DatePicker, Button } from "antd";
+import { Form, Input, DatePicker } from "antd";
 import { SIGN_UP_REQUEST } from "../actions";
+import router from "next/router"
 
 const StyledRegister = styled.div`
   width: 600px;
@@ -95,8 +95,7 @@ const Register = () => {
   }, [signUpError]);
   useEffect(() => {
     if (signUpDone) {
-      console.log("done");
-      redirect("/register-success");
+      router.push("/register_success")
     }
   }, [signUpDone]);
 
@@ -145,16 +144,12 @@ const Register = () => {
 
         <CustomInput type="email" label=" 이메일" name="email" message="이메일을 입력해주세요!" />
         <CustomInput label=" 휴대폰번호" name="phone" message="휴대폰번호를 입력해주세요!" />
-        <CustomInput label="전화번호" notreq={true} name="homephone" />
         <Form.Item>
           <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
+          style={{display: "flex", alignItems: "center", marginLeft: '120px'}}>
             <button
               style={{
+                cursor: "pointer",
                 width: "280px",
                 height: "75px",
                 backgroundColor: "#BBBBBB",
@@ -173,6 +168,7 @@ const Register = () => {
             </button>
             <button
               style={{
+                cursor: "pointer",
                 width: "280px",
                 height: " 75px",
                 backgroundColor: "#767676",
