@@ -26,14 +26,15 @@ exports.login =( (req, res) => {
                         message: '서버 측에서 발생한 에러입니다.'
                     });
                     if (matched) {
-                        jwt.sign({ user: log }, process.env.Access_SecretKey, { expiresIn: '1h' }, (err, token) => {
-                            // res.cookie('authorization', token);
+                        jwt.sign({ user: log }, process.env.Access_SecretKey, { expiresIn: '3h' }, (err, token) => {
+                            res.cookie('authorization', token);
                             res.status(200).json({
                                 code: 201, // 로그인 성공
                                 message: '로그인 성공',
                                 token: token
                                 
                             });
+                            redirect('/');
                             
                         })
 
