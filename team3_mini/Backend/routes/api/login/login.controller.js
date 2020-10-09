@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
 
 
 exports.login =( (req, res) => {
-
+    
     User.findOne({ userId: req.body.userId })
         .then(log => {
             if (!log) {
@@ -26,7 +26,7 @@ exports.login =( (req, res) => {
                         message: '서버 측에서 발생한 에러입니다.'
                     });
                     if (matched) {
-                        jwt.sign({ user: log }, 'secretKey', { expiresIn: '1h' }, (err, token) => {
+                        jwt.sign({ user: log }, process.env.Access_SecretKey, { expiresIn: '1h' }, (err, token) => {
                             // res.cookie('authorization', token);
                             res.status(200).json({
                                 code: 201, // 로그인 성공

@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
+const dotenv = require('dotenv');
 
 
 
@@ -26,6 +27,9 @@ mongoose.connect('mongodb://localhost:27017/team3mini').then((db)=>{
 //cors 
 const cors = require('cors');
 app.use(cors());
+
+//env
+dotenv.config();
 
 //body Parser 
 const bodyParser = require('body-parser');
@@ -54,7 +58,7 @@ app.use('/users', usersRouter);
 // catch 404 and forward to error handler
 //Handling error
 app.use((req,res,next)=>{
-  const error = new Error('Not found');
+  const error = new Error('Wrong Api Route');
   error.status = 404;
   next(error);
 
@@ -66,10 +70,7 @@ app.use((error,req,res,next)=>{
       error:{
          message: error.message
       }
-
   });
-
-
 });
 
 module.exports = app;

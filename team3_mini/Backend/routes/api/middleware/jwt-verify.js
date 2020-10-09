@@ -13,7 +13,7 @@ module.exports = {
                 message: '인증 실패'
             });
         } else {
-            jwt.verify(token, 'secretKey', (err, userData) => { 
+            jwt.verify(token, process.env.Access_SecretKey , (err, userData) => { 
                 if (err) return res.status(401).json({
                     code: 108, // 토큰 인증 실패
                     message: '인증 실패'
