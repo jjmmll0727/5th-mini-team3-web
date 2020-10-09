@@ -136,7 +136,7 @@ exports.delete = (req, res) => {
 //     }
 //     res.json("success")
 //     })
-//     File.findOne({ _id: req.body.id });
+//     File.deleteOne({ _id: req.body.id });
 // }
 
 exports.download = (req, res) => { // id --> 업로드된 파일의 이름(site의 id+txt와 동일해)
