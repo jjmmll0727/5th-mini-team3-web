@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "@emotion/styled";
+
 const App=styled.div`
   display: flex;
   flex-direction: column;
@@ -39,7 +40,7 @@ const App=styled.div`
   }
   
 `;
-const Login=styled.div`
+const Idpw=styled.div`
   display: flex;
   justify-content: center;
   
@@ -62,15 +63,15 @@ const Bstyle=styled.div`
   
 `;
 
-const Test = () =>(
+const Login = () =>(
   <App>
       <label>로그인 </label> 
-    <Login>
+    <Idpw>
       <input  type="text" placeholder="아이디"/>
-    </Login>
-    <Login>
+    </Idpw>
+    <Idpw>
       <input type="password" placeholder="비밀번호"/>
-    </Login>
+    </Idpw>
     <Bstyle >
       <button>로그인</button>
     </Bstyle>
@@ -78,4 +79,4 @@ const Test = () =>(
   </App>
 
 );
-export default Test;
+export default Login;
