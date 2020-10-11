@@ -15,6 +15,11 @@ const SiteSchema = new Schema({
         ref: 'users'
     },
 
+    like_user_id:[{
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+    }],
+
     title : {
         type: String,
         required: true,
@@ -30,14 +35,13 @@ const SiteSchema = new Schema({
         type: String, 
         required: true
     },
+    files : [{
+        type: String      
+    }],
 
+   
+    
     /*
-    img : { 
-        data: Buffer, 
-        contentType: String,
-    },
-    
-    
     double_id : {
         type: String,
         required: true,
@@ -60,6 +64,13 @@ const SiteSchema = new Schema({
         type: Number,
         default: 0
     } // 좋아요 수 
+    ,
+    time : {
+
+        type: Date,
+        default: Date.now()
+        
+    }
    
 
 });
