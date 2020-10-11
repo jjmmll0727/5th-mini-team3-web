@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import { Row, Col, Button, Dropdown, Menu } from "antd";
+import React from "react";
+import { Row, Col, Button, Dropdown, Menu, Tabs } from "antd";
 import { EditOutlined, EllipsisOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
 import SiteList from "../components/SiteList";
 import shortid from "shortid";
 import faker from "faker";
+import HeartIcon from "../asssets/icon_heartFill_mySite_likeList.svg";
+const { TabPane } = Tabs;
 const StyledHome = styled.div`
   font-family: Noto Sans CJK KR;
   margin-top: 200px;
@@ -26,7 +28,9 @@ const StyledHome = styled.div`
       padding-right: 20px;
     }
   }
-
+  span {
+    margin: 5px;
+  }
   ul {
     list-style-type: none;
     padding: 0;
@@ -41,6 +45,12 @@ const StyledHome = styled.div`
     margin-top: 30px;
     margin-right: 30px;
   }
+  .tab-header {
+    margin-top: 10px;
+    padding: 5px;
+    border-bottom: 3px solid #bbbbbb;
+    display: inline-block;
+  }
 `;
 const menu = (
   <Menu>
@@ -52,14 +62,13 @@ const cardDataDummy = Array(5)
   .map(() => ({
     id: shortid.generate(),
     title: faker.name.findName(),
-    imgsrc: faker.image.image(510, 136),
     content: Array(faker.random.number(3))
       .fill(0)
       .map(() => faker.lorem.sentence()),
     href: faker.internet.url(),
   }));
+
 const Category = () => {
-  const [show, setShow] = useState(false);
   return (
     <StyledHome>
       <Row>
@@ -92,16 +101,21 @@ const Category = () => {
                 </Col>
               </Row>
 
-              <Button size="large" shape="round" onClick={() => setShow(true)}>
-                사이트 목록
-              </Button>
-              <Button size="large" shape="round" onClick={() => setShow(true)}>
-                좋아요 리스트
-              </Button>
-              <Button size="large" shape="round">
-                랭킹
-              </Button>
-              <SiteList cardList={cardDataDummy} visible={show} />
+              <Tabs defaultActiveKey="1" onChange={(key) => console.log(key)}>
+                <TabPane tab="사이트 목록" key="1">
+                  <SiteList cardList={cardDataDummy} />
+                </TabPane>
+                <TabPane tab="좋아요 리스트" key="2">
+                  <div className="tab-header">
+                    <HeartIcon />
+                    <span>전체 (5)</span>
+                  </div>
+                  <SiteList cardList={cardDataDummy} />
+                </TabPane>
+                <TabPane tab="랭킹" key="3">
+                  랭킹
+                </TabPane>
+              </Tabs>
             </Col>
           </Row>
         </Col>

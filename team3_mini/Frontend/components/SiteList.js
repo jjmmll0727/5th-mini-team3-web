@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { Image, Card, Modal } from "antd";
+import { Card, Modal } from "antd";
 import { CloseOutlined, DeleteTwoTone } from "@ant-design/icons";
 const { Meta } = Card;
+import Logo from "../asssets/img_listoreGraphic_signUpDone.svg";
+import DeleteIcon from "../asssets/icon_delete_popUp.svg";
+
 const StyledList = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+
   img {
     background: #eeeeee;
     border-radius: 50%;
@@ -61,47 +65,44 @@ const StyledList = styled.div`
   }
 `;
 
-const SiteList = ({ visible, cardList }) => {
+const SiteList = ({ cardList }) => {
   const [show, setShow] = useState(false);
   const handleOk = () => setShow(false);
   const handleCancel = () => setShow(false);
   return (
-    visible && (
-      <StyledList>
-        {cardList.length === 0 ? (
+    <StyledList>
+      {cardList.length === 0 ? (
+        <>
+          <Logo />
+          <span>필요한 사이트를 저장해보세요!</span>
+          <span>간단한 메모 작성, PDF 첨부 등이 가능합니다.</span>
+          <button>추가하기</button>
+        </>
+      ) : (
+        cardList.map((data) => (
           <>
-            <img src="" />
-            <span>필요한 사이트를 저장해보세요!</span>
-            <span>간단한 메모 작성, PDF 첨부 등이 가능합니다.</span>
-            <button>추가하기</button>
+            <Card className="list" hoverable key={data.id}>
+              <Meta
+                title={
+                  <>
+                    {data.title}
+                    <CloseOutlined
+                      key={data.id}
+                      onClick={() => setShow(true)}
+                    />
+                  </>
+                }
+                description="2020-00-00/PM 00:00"
+              />
+            </Card>
+            <Modal visible={show} onOk={handleOk} onCancel={handleCancel}>
+              <DeleteIcon />
+              <p>이 사이트를 정말 삭제하시겠습니까?</p>
+            </Modal>
           </>
-        ) : (
-          cardList.map((data) => (
-            <>
-              <Card className="list" hoverable key={data.id}>
-                <Meta
-                  avatar={<Image src={data.imgsrc} />}
-                  title={
-                    <>
-                      {data.title}
-                      <CloseOutlined
-                        key={data.id}
-                        onClick={() => setShow(true)}
-                      />
-                    </>
-                  }
-                  description="2020-00-00/PM 00:00"
-                />
-              </Card>
-              <Modal visible={show} onOk={handleOk} onCancel={handleCancel}>
-                {/* <DeleteTwoTone /> */}
-                <p>이 사이트를 정말 삭제하시겠습니까?</p>
-              </Modal>
-            </>
-          ))
-        )}
-      </StyledList>
-    )
+        ))
+      )}
+    </StyledList>
   );
 };
 
