@@ -1,56 +1,48 @@
 import Link from "next/link";
 import React from "react";
+import Logo from "../asssets/img_listoreGraphic_signUpDone.svg";
+import styled from "@emotion/styled";
+const StyledComponent = styled.div`
+  width: 600px;
+  height: 800px;
+  margin: 0 auto;
+  left: 50%;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 400px;
+
+  > .Register {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    span:nth-of-type(1) {
+      text-align: center;
+      color: #113358;
+      font: normal normal bold 48px/60px Noto Sans CJK KR;
+      margin: 20px;
+    }
+    span:nth-of-type(2) {
+      color: #767676;
+      font: normal normal normal 24px/60px Noto Sans CJK KR;
+      padding: 10px 0px;
+      margin-bottom: 30px;
+    }
+  }
+
+  svg {
+    width: 178px;
+    height: 149px;
+    margin: 0px auto;
+  }
+`;
 
 const AfterRegister = () => (
-  <div
-    style={{
-      width: "600px",
-      height: "800px",
-      margin: "0 auto",
-      left: "50%",
-      top: "50%",
-      display: "flex",
-      flexDirection: "column",
-      marginTop: "200px",
-    }}
-  >
-    <div
-      style={{
-        textAlign: "center",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <img
-        style={{
-          background: "#EEEEEE",
-          borderRadius: "50%",
-          width: "204px",
-          height: "204px",
-          margin: "0px auto",
-        }}
-        src=""
-        alt="로고"
-      />
-      <span
-        style={{
-          textAlign: "center",
-          color: "#113358",
-          font: "normal normal bold 48px/60px Noto Sans CJK KR",
-          margin: "20px",
-        }}
-      >
-        환영합니다!
-      </span>
-      <span
-        style={{
-          textAlign: "center",
-          color: "#767676",
-          font: "normal normal normal 24px/60px Noto Sans CJK KR",
-        }}
-      >
-        회원 가입이 성공적으로 완료되었습니다!
-      </span>
+  <StyledComponent>
+    <div className="Register">
+      <Logo />
+      <span>환영합니다!</span>
+      <span>회원 가입이 성공적으로 완료되었습니다!</span>
     </div>
 
     <div
@@ -101,6 +93,6 @@ const AfterRegister = () => (
         </Link>
       </button>
     </div>
-  </div>
+  </StyledComponent>
 );
 export default AfterRegister;

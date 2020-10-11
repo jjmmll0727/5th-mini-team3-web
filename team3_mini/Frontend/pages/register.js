@@ -26,7 +26,7 @@ const StyledRegister = styled.div`
     flex-direction: column;
     span:nth-of-type(1) {
       text-align: center;
-      color: #767676;
+      color: #191919;
       font: normal normal 900 40px/59px Noto Sans CJK KR;
     }
     span:nth-of-type(2) {
@@ -157,6 +157,17 @@ const Register = () => {
             }}
             maxLength="50"
           />
+          <button
+            style={{
+              background: "#BBBBBB",
+              border: "none",
+              borderRadius: "17px",
+              width: "92px",
+              height: "34px",
+            }}
+          >
+            <span style={{ color: "#FFFFFF" }}>중복확인</span>
+          </button>
         </Form.Item>
         <CustomPass
           label=" 비밀번호"
@@ -193,53 +204,53 @@ const Register = () => {
           message="휴대폰번호를 입력해주세요!"
         />
         <CustomInput label="전화번호" notreq={true} name="homephone" />
-        <Form.Item>
-          <div
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
+          <button
             style={{
-              display: "flex",
-              justifyContent: "space-between",
+              width: "280px",
+              height: "75px",
+              backgroundColor: "#FFFFFF",
+              border: "1px solid #113358",
+              borderRadius: "10px",
             }}
           >
-            <button
+            <span
               style={{
-                width: "280px",
-                height: "75px",
-                backgroundColor: "#FFFFFF",
-                border: "1px solid #113358",
-                borderRadius: "10px",
+                color: "#113358",
+                font: "normal normal bold 22px/33px Noto Sans CJK KR",
               }}
             >
-              <span
-                style={{
-                  color: "#113358",
-                  font: "normal normal bold 22px/33px Noto Sans CJK KR",
-                }}
-              >
-                취소하기
-              </span>
-            </button>
-            <button
+              취소하기
+            </span>
+          </button>
+          <button
+            style={{
+              width: "280px",
+              height: " 75px",
+              backgroundColor: "#113358",
+              border: "none",
+              borderRadius: "10px",
+              marginLeft: "30px",
+            }}
+            htmlType="submit"
+          >
+            <span
               style={{
-                width: "280px",
-                height: " 75px",
-                backgroundColor: "#113358",
-                border: "none",
-                borderRadius: "10px",
-                marginLeft: "30px",
+                color: "#FFFFFF",
+                font: "normal normal bold 22px/33px Noto Sans CJK KR",
               }}
-              htmlType="submit"
             >
-              <span
-                style={{
-                  color: "#FFFFFF",
-                  font: "normal normal bold 22px/33px Noto Sans CJK KR",
-                }}
-              >
-                가입하기
-              </span>
-            </button>
-          </div>
-        </Form.Item>
+              가입하기
+            </span>
+          </button>
+        </div>
       </Form>
     </StyledRegister>
   );
