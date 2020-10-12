@@ -67,14 +67,7 @@ const Bstyle=styled.div`
 const Login = () => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (signUpDone) {
-      console.log("done");
-      redirect("/register-success");
-    }
-  }, [signUpDone]);
+  
 
   const handleClick = () => {
     console.log({id});
