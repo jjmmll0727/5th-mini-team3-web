@@ -1,13 +1,16 @@
 import React from "react";
 import styled from "@emotion/styled";
+import Logo_Footer from '../icons/logo_listore_Footer.svg';
 
 const Container = styled.footer`
   display: flex;
   width: 100%;
   justify-content: center;
-  background-color: #eeeeee;
+  background-color: #113358;
+  padding: 40px;
+  margin-top: 50px;
   a {
-    color: #bbbbbb;
+    color: #EEEEEE;
     margin-left: 10px;
     margin-right: 10px;
     text-decoration: none;
@@ -19,9 +22,9 @@ const Logo = styled.span`
   width: 200px;
   height: 100px;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   margin: 40px 10px 40px;
-  background-color: #dcdcdc;
+  //background-color: #dcdcdc;
 `;
 
 const Wrapper = styled.span`
@@ -47,7 +50,8 @@ const Info = styled.div`
 const Footer = () => (
   <Container>
     <Logo>
-      <a>사이트 로고</a>
+      <Logo_Footer></Logo_Footer>
+      {/* <a>사이트 로고</a> */}
     </Logo>
     <Wrapper>
       <Menu>
