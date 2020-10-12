@@ -17,6 +17,12 @@ const UserSchema = new Schema({
         trim : true
         
     },
+    name : {
+
+        type: String,
+        required: true
+
+    },
     birth : {
         type: String,
         required: true,
@@ -36,15 +42,8 @@ const UserSchema = new Schema({
         //match: /^((01[016789]{1}|070|02|0[3-9]{1}[0-9]{1})-[0-9]{3,4}-[0-9]{4})|((01[016789]{1}|070|02|0[3-9]{1}[0-9]{1})[0-9]{3,4}[0-9]{4})$/
 
         
-    },
-    homephone : {
-
-        type: String,
-        //match: /^((01[016789]{1}|070|02|0[3-9]{1}[0-9]{1})-[0-9]{3,4}-[0-9]{4})|((01[016789]{1}|070|02|0[3-9]{1}[0-9]{1})[0-9]{3,4}[0-9]{4})$/
-
-
     }
 
 });
 
-module.exports = mongoose.model('users',UserSchema);
+module.exports = mongoose.model('users', UserSchema);

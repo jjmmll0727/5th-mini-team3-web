@@ -9,15 +9,15 @@ const User = require('../models/User');
 
 
 exports.register = (req, res, next) => {
-    const { userId, password, birth, email, phone, homephone } = req.body
-    if (!userId || !password || !birth || !email || !phone) {
+    const { userId, password, birth,name, email, phone } = req.body
+    if (!userId || !password || !birth || !email || !phone || !name) {
         res.status(409).json({
             code: 105, //필수 입력값 미입력
             message: '필수입력값이 입력되지 않았습니다'
         })
     } else {
         User.findOne({ userId: req.body.userId }).exec().then(user => {
-
+            // evec() mongo query에서 버전3 에서는 promise를 위해 exec이 필요했어, 버전4에서는 필요 x
             if (user) {
                 return res.status(409).json({
                     code: 106, //존재하는 아이디 실패
@@ -27,7 +27,7 @@ exports.register = (req, res, next) => {
             }
 
             const newUser = new User({
-                userId, password, birth, email, phone, homephone
+                userId, password, birth,name, email, phone
                 // userId: req.body.userId,
                 // password: req.body.password,
                 // birth: req.body.birth,
@@ -39,6 +39,7 @@ exports.register = (req, res, next) => {
 
 
 
+            
             bcrypt.genSalt(10, (err, salt) => {
 
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -53,7 +54,7 @@ exports.register = (req, res, next) => {
                     }).catch((err) => {
                         console.log(err);
                         res.status(500).json({
-                            code: 110, //해싱 에러
+                            code: 110, //회원가입 에러
                             error: "서버 측에서 발생한 에러입니다."
 
                         });
