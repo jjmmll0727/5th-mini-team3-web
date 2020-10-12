@@ -1,10 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import styled from "@emotion/styled";
+import { useSelector } from "react-redux";
 // import { Dropdown } from "antd";
 // import { AiOutlineDown } from "react-icons/ai"; 둘다 오류남
 
 const Container = styled.header`
+  min-width: 1800px;
   z-index: 100;
   display: block;
   position: fixed;
@@ -75,8 +77,10 @@ const ShowRank = styled.span`
   width: 80%;
 `;
 
-const Header = () => (
-  <Container>
+
+
+const NoLogged = () => {
+  return (
     <MemberWrapper>
       <Link href="/login">
         <a className="membership">로그인</a>
@@ -85,29 +89,47 @@ const Header = () => (
       <Link href="/register">
         <a className="membership">회원가입</a>
       </Link>
-    </MemberWrapper>
+  </MemberWrapper>
+  )
+}
 
-    <Menu>
-      <Link href="/">
-        <a id="logo">로고 OR 웹사이트명</a>
+const Logged = () => {
+  return (
+    <MemberWrapper>
+      <Link href="/login">
+        <a className="membership">로그아웃</a>
       </Link>
+  </MemberWrapper>
+  )
+}
 
-      <Link href="/">
-        <a className="menu">사이트 소개</a>
-      </Link>
-      <Link href="/mysites/main/ALL">
-        <a className="menu">나의 사이트</a>
-      </Link>
-    </Menu>
+const Header = () => { 
+  
+  const { me } = useSelector(state => state.user)
+  return (
+    <Container>
+      {me ? <Logged /> : <NoLogged />}
+      <Menu>
+        <Link href="/">
+          <a id="logo">로고 OR 웹사이트명</a>
+        </Link>
 
-    <Rank>
-      <ShowRank>
-        <a>1</a>
-        <a>더블슬래시</a>
-      </ShowRank>
-      <a id="dropdown">∨</a>
-    </Rank>
-  </Container>
-);
+        <Link href="/">
+          <a className="menu">사이트 소개</a>
+        </Link>
+        <Link href="/mysites/main/ALL">
+          <a className="menu">나의 사이트</a>
+        </Link>
+      </Menu>
 
+      <Rank>
+        <ShowRank>
+          <a>1</a>
+          <a>더블슬래시</a>
+        </ShowRank>
+        <a id="dropdown">∨</a>
+      </Rank>
+    </Container>
+  );
+}
 export default Header;

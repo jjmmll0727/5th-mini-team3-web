@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from "@emotion/styled";
-
-import AppLayout from "../AppLayout"
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 const StyledMuck = styled.div`
     button{
@@ -60,11 +57,6 @@ const StyledMuck = styled.div`
 const Nothing = ({category}) => {
     return (
             <StyledMuck>
-                <div className="button_list">
-                    <button className="btn_active">사이트 목록</button>
-                    <button>좋아요 리스트</button>
-                    <button>랭킹</button>
-                </div>
                 <div className="plusPage_main">
                     <img src="/logo_2.PNG" />
                     <h4>필요한 사이트를 저장해보세요!</h4>

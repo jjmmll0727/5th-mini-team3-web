@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
-import { Row, Col } from "antd";
-
+import React, { useEffect, useState } from "react";
+import { Row, Col, Menu, Dropdown, Button } from "antd";
+import { EditOutlined, EllipsisOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
 import Card from "../../../components/Card"; //만든 카드 컴포넌트를 메인페이지에서 불러오고
-import Menu from "../../../components/Menu"
+import CustomMenu from "../../../components/Menu"
+import SiteList from "../../../components/SiteList"
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { GET_SITES_REQUEST } from "../../../actions";
@@ -23,6 +24,12 @@ const StyledHome = styled.div`
       font-weight: bolder;
     }
   }
+  .header {
+    > span {
+      float: right;
+      padding-right: 20px;
+    }
+  }
   ul {
     list-style-type: none;
     padding: 0;
@@ -38,9 +45,14 @@ const StyledHome = styled.div`
 
 
 
-
+const menu = (
+  <Menu>
+    <Menu.Item key="0">카테고리 삭제</Menu.Item>
+  </Menu>
+);
 
 const Home = () => {
+  const [show, setShow] = useState(true);
   const router = useRouter()
   const { where } = router.query
   const dispatch = useDispatch()
@@ -65,12 +77,30 @@ const Home = () => {
         <Col md={12}>
           <Row>
             <Col md={4}>
-              <Menu situation={"main"}/>
+              <CustomMenu situation={"main"}/>
             </Col>
             <Col className="main" md={20}>
               <h2>김삼삼님의 사이트</h2>
-              <h1>{where}</h1>
-              { currentWebsites[0] ? <div style={{
+              <Row>
+                <Col md={16}>
+                  <h1>{where}</h1>
+                </Col>
+                <Col className="header" md={8}>
+                  <Dropdown overlay={menu} trigger={["click"]}>
+                    <EllipsisOutlined style={{ fontSize: "30px" }} />
+                  </Dropdown>
+
+                  <EditOutlined style={{ fontSize: "30px" }} />
+                </Col>
+              </Row>
+              <Button size="large" shape="round" onClick={() => setShow(prev => !prev)}>
+                사이트 목록
+              </Button>
+              <Button size="large" shape="round">
+                랭킹
+              </Button>
+              <SiteList cardList={currentWebsites} visible={show} />
+              {/* { currentWebsites[0] ? <div style={{
                   display: "flex",
                   flexWrap: "wrap",
                   minWidth: "700px"
@@ -79,7 +109,7 @@ const Home = () => {
                     <Card key={data.id} href={data.href} content={data.content} title={data.title} imgsrc={data.imgsrc} />
                   ))}
               </div>
-              : <Nothing category={where} />}
+              : <Nothing category={where} />} */}
             </Col>
           </Row>
         </Col>

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import withReduxSaga from "next-redux-saga";
 import wrapper from "../store/configureStore";
 import "antd/dist/antd.css";
+import "../index.css"
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";

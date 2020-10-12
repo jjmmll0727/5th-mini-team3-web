@@ -8,7 +8,7 @@ const StyledMain = styled.div`
   margin: auto;
   top: 50%;
   margin-top: 200px;
-
+  overflow: hidden;
   button {
     width: 165px;
     height: 59px;
@@ -85,7 +85,7 @@ const Main = () => {
               float: "left",
               marginTop: "150px",
             }}
-            src=""
+            src="/img_slide1_main.png"
           />
         </Col>
       </Row>
