@@ -96,7 +96,7 @@ exports.user = (req, res) => {
         .then(user => {
             res.status(200).json({
                 code: 305,
-                username: user[0].name,
+                username: user[0].name, // 회원가입을 할때 name 속성 값도 기입한다. 
                 message: "마이페이지 유저 이름 조회 성공"
             })
 

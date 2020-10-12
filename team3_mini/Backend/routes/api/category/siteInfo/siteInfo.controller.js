@@ -136,30 +136,30 @@ exports.delete = (req, res) => {
     })
 };
 
-// const File = require('../../models/File')
-// exports.deletefile = (req, res) => {
-//     File.findOne({ _id: req.body.id }).then(result => {
-//         console.log(result.files);
-//         const { s3 } = require('../../middleware/S3_upload')
-//         let i = 0;
-//         while(i <= result.files.length){
-//         const params = {
-//             Bucket: "restoreimage",
-//             Key: result.files[i]
-//         };
-//         s3.deleteObject(params, (err, data) => {
-//             if (err) {
-//                 console.log(err);
-//             } else {
-//                 console.log(data);
-//             }
-//         })
-//         i++;
-//     }
-//     res.json("success")
-//     })
-//     File.deleteOne({ _id: req.body.id });
-// }
+const File = require('../../models/File')
+exports.deletefile = (req, res) => {
+    File.findOne({ _id: req.body.id }).then(result => {
+        console.log(result.files);
+        const { s3 } = require('../../middleware/S3_upload')
+        let i = 0;
+        while(i <= result.files.length){
+        const params = {
+            Bucket: "restoreimage",
+            Key: result.files[i]
+        };
+        s3.deleteObject(params, (err, data) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(data);
+            }
+        })
+        i++;
+    }
+    res.json("success")
+    })
+    File.deleteOne({ _id: req.body.id });
+}
 
 exports.download = (req, res) => { // id --> 업로드된 파일의 이름(site의 id+txt와 동일해)
     const params = {
