@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import Logo_Footer from '../icons/logo_listore_Footer.svg';
+import Logo_Footer from "../assets/logo_listore_Footer.svg";
 
 const Container = styled.footer`
   display: flex;
@@ -10,7 +10,7 @@ const Container = styled.footer`
   padding: 40px;
   margin-top: 50px;
   a {
-    color: #EEEEEE;
+    color: #eeeeee;
     margin-left: 10px;
     margin-right: 10px;
     text-decoration: none;
@@ -68,7 +68,10 @@ const Footer = () => (
         <a>책임한계와 법적고지</a>
       </Menu>
       <Info>
-        <a>웹사이트명 대표: ____ E-mail : ______@gmail.com 주소 : 경기도 안산시 상록구 광덕1로 355, 209</a>
+        <a>
+          웹사이트명 대표: ____ E-mail : ______@gmail.com 주소 : 경기도 안산시
+          상록구 광덕1로 355, 209
+        </a>
       </Info>
       <Info>
         <a>COPYRIGHT(C)______. ALL RIGHTS RESERVED.</a>

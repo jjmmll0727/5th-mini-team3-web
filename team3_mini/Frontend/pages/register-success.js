@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import Logo from "../asssets/img_listoreGraphic_signUpDone.svg";
+import Logo from "../assets/img_listoreGraphic_signUpDone.svg";
 import styled from "@emotion/styled";
 const StyledComponent = styled.div`
   width: 600px;

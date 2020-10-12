@@ -5,7 +5,8 @@ import styled from "@emotion/styled";
 import SiteList from "../components/SiteList";
 import shortid from "shortid";
 import faker from "faker";
-import HeartIcon from "../asssets/icon_heartFill_mySite_likeList.svg";
+import HeartIcon from "../assets/icon_heartFill_mySite_likeList.svg";
+import Ranking from "../pages/Ranking";
 const { TabPane } = Tabs;
 const StyledHome = styled.div`
   font-family: Noto Sans CJK KR;
@@ -108,12 +109,12 @@ const Category = () => {
                 <TabPane tab="좋아요 리스트" key="2">
                   <div className="tab-header">
                     <HeartIcon />
-                    <span>전체 (5)</span>
+                    <span>전체 ({cardDataDummy.length})</span>
                   </div>
                   <SiteList cardList={cardDataDummy} />
                 </TabPane>
                 <TabPane tab="랭킹" key="3">
-                  랭킹
+                  <Ranking />
                 </TabPane>
               </Tabs>
             </Col>

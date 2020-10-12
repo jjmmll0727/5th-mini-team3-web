@@ -3,16 +3,15 @@ import styled from "@emotion/styled";
 import { Carousel, Row, Col } from "antd";
 
 const StyledMain = styled.div`
-  background: #bbbbbb;
+  background: #eeeeee;
   height: 801px;
   margin: auto;
   top: 50%;
-  margin-top: 200px;
 
   button {
     width: 165px;
     height: 59px;
-    background-color: #eeeeee;
+    background-color: #113358;
     border: none;
     border-radius: 10px;
     margin-top: 100px;
@@ -20,7 +19,7 @@ const StyledMain = styled.div`
     margin-left: 500px;
     span {
       font-size: 18px;
-      color: #767676;
+      color: #ffffff;
     }
   }
 `;
@@ -87,6 +86,7 @@ const Main = () => {
             }}
             src=""
           />
+          <img src="../assets/img_silde1_main.png" />
         </Col>
       </Row>
     </StyledMain>
