@@ -95,7 +95,7 @@ const Register = () => {
   }, [signUpError]);
   useEffect(() => {
     if (signUpDone) {
-      router.push("/register_success")
+      router.push("/register-success")
     }
   }, [signUpDone]);
 

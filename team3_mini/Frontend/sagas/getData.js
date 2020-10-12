@@ -15,21 +15,10 @@ function getSitesApi(data) {
 
 function* getSites(action) {
   try {
-    const cardDataDummy = Array(faker.random.number(5))
-      .fill(0) 
-      .map(() => ({
-        id: shortid.generate(), 
-        title: faker.name.findName(), 
-        imgsrc: faker.image.image(510, 136),
-        content: Array(faker.random.number(3)).fill(0).map(() => (
-          faker.lorem.sentence()
-        )),
-        href: faker.internet.url() 
-      }));
-    // const result = yield call(getSitesApi, action.data)
+    const result = yield call(getSitesApi, action.data)
     yield put({
       type: GET_SITES_SUCCESS,
-      data: cardDataDummy
+      data: result.data
     })
   } catch (err) {
     yield put({
@@ -39,14 +28,13 @@ function* getSites(action) {
   }
 }
 
-
 function* getCategory(action) {
   try {
-    // const result = yield call(getCategoryApi, action.data)
-    const DummyMenu = ["ALL", "과제발표", "논문", "디자인", "쇼핑", "여행", "추가"]
+    const result = yield call(getCategoryApi, action.data)
+    
     yield put({
       type: GET_CATEGORY_SUCCESS,
-      data: DummyMenu
+      data: result.data
     })
   } catch (err) {
     yield put({

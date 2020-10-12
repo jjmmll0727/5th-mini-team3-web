@@ -28,7 +28,7 @@ const MemberWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
 
-  margin: 10px 30px;
+  margin: 20px 100px;
   a {
     font: normal 600 13px Noto Sans CJK KR;
     color: #9a9a9a;
@@ -38,22 +38,30 @@ const MemberWrapper = styled.div`
   }
 `;
 
-const Menu = styled.span`
-  display: inline;
-  float: left;
+const MenuWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 100px;
+`; 
 
+
+const Menu = styled.span`
+  display: inline-flex;
+  float: left;
+  align-items: center;
+  
   margin: 10px 30px;
   font-size: 15px;
   a {
     font: normal 600 16px Noto Sans CJK KR;
-    color: #707070;
+    color: #191919;
   }
   .menu {
     margin-right: 40px;
   }
   #logo {
     font: normal bolder 26px Noto Sans CJK KR;
-    color: #767676;
+    color: #191919;
     margin-right: 80px;
   }
 `;
@@ -62,13 +70,14 @@ const Rank = styled.span`
   display: inline-block;
   float: right;
   width: 250px;
-  margin: 10px 30px;
+  margin: 10px 0px;
   a {
     font: normal 600 16px Noto Sans CJK KR;
-    color: #707070;
+    color: #191919;
   }
   #dropdown {
     font-size: 20px;
+    margin: 0px;
   }
 `;
 

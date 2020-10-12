@@ -16,7 +16,8 @@ function signupAPI(data) {
 
 function* login(action) {
   try {
-    const result = yield call(loginAPI, action.data); // 그냥 인자로 넘기면 알아서 들어감. 더받고싶으면 더 넣으면 댐
+    const result = yield call(loginAPI, action.data);
+    document.cookie = `Authorization=${result.data.token}`
     yield put({
       type: LOG_IN_SUCCESS,
       data: result.data, //	result.data 고정

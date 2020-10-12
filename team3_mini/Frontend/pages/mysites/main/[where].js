@@ -57,6 +57,7 @@ const Home = () => {
   const { where } = router.query
   const dispatch = useDispatch()
   const { me } = useSelector(state => state.user)
+  console.log(document.cookie)
   useEffect(() => {
     dispatch({
       type: GET_SITES_REQUEST,

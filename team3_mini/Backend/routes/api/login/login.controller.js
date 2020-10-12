@@ -22,7 +22,7 @@ exports.login =( (req, res) => {
                 bcrypt.compare(req.body.password, log.password, (err, matched) => {
 
                     if (err) return res.status(401).json({
-                        code: 110, //에러 실패
+                        code: 109, //로그인시 해싱 에러
                         message: '서버 측에서 발생한 에러입니다.'
                     });
                     if (matched) {
@@ -45,6 +45,13 @@ exports.login =( (req, res) => {
                     }
                 })
             }
+        }).catch((err)=>{
+            res.status(500).json({
+                code: 104, //로그인시 서버 에러
+                message: '서버측 에러입니다',
+                err: err
+            })
+
         });
 })
 

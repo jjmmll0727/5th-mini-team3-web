@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Input, Form, Upload, Switch } from "antd";
 import styled from "@emotion/styled";
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
@@ -6,6 +6,7 @@ import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import AppLayout from "../../../components/AppLayout"
 import TextArea from 'antd/lib/input/TextArea';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 
 const StyledMain = styled.div`
     .submit_btn{
@@ -91,6 +92,13 @@ const Append = () => {
       const onFinishFailed = (errorInfo) => {
         console.log("Failed:", errorInfo);
       };
+      const { me } = useSelector(state => state.user)
+    useEffect(() => {
+        if(!me){
+        alert("로그인 후 이용해주세요!")
+        router.push('/login')
+        }
+    }, [ me ])
     function beforeUpload(file) {
         const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
         if (!isJpgOrPng) {

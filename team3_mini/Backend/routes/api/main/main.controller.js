@@ -12,16 +12,16 @@ exports.show = (req, res) => {
     Site.find({}).lean().
         then(sites => {
 
-                Category.find({}).lean().
+            Category.find({}).lean().
                 then(categories => {
 
-                    res.send({ 
+                    res.status(200).json({
                         sites: sites,
                         categories: categories,
-                        userData : req.userData
-                            
-                    }) 
+                        userData: req.userData
+
+                    })
                 })
         })
-        
+
 }
