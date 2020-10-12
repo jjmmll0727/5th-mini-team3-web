@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState, useEffect }from 'react';
 import styled from "@emotion/styled";
 
 const App=styled.div`
@@ -63,20 +63,48 @@ const Bstyle=styled.div`
   
 `;
 
-const Login = () =>(
+const Login = () => {
+  const [id, setId] = useState("");
+  const [pw, setPw] = useState("");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (signUpDone) {
+      console.log("done");
+      redirect("/register-success");
+    }
+  }, [signUpDone]);
+
+  const handleClick = () => {
+    console.log({id});
+    console.log({pw});
+    if(id.length===0){
+      console.log("id failed");
+      alert("아이디를 입력해주세요");
+    }
+    else if(pw.length===0){
+      console.log("pw failed");
+      alert("비밀번호를 입력해주세요");
+    }
+  }
+
+  return (
   <App>
       <label>로그인 </label> 
     <Idpw>
-      <input  type="text" placeholder="아이디"/>
+      <input  type="id" placeholder="아이디" value={id} 
+          onChange={({target:{value}})=>setId(value)}/>
     </Idpw>
     <Idpw>
-      <input type="password" placeholder="비밀번호"/>
+      <input type="password" placeholder="비밀번호" value={pw} 
+          onChange={({target:{value}})=>setPw(value)}/>
     </Idpw>
     <Bstyle >
-      <button>로그인</button>
+      <button onClick={handleClick}>로그인</button>
     </Bstyle>
-    <span > 아직 회원이 아니신가요? <span> 회원가입</span> </span>
+    <span > 아직 회원이 아니신가요? <span>회원가입</span> </span>
   </App>
 
 );
+  }
 export default Login;
