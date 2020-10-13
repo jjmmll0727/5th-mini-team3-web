@@ -156,17 +156,6 @@ const Register = () => {
             }}
             maxLength="50"
           />
-          <button
-            style={{
-              background: "#BBBBBB",
-              border: "none",
-              borderRadius: "17px",
-              width: "92px",
-              height: "34px",
-            }}
-          >
-            <span style={{ color: "#FFFFFF" }}>중복확인</span>
-          </button>
         </Form.Item>
         <CustomPass
           label=" 비밀번호"
@@ -191,7 +180,6 @@ const Register = () => {
           />
         </Form.Item>
 
-<<<<<<< HEAD
         <CustomInput type="email" label=" 이메일" name="email" message="이메일을 입력해주세요!" />
         <CustomInput label=" 휴대폰번호" name="phone" message="휴대폰번호를 입력해주세요!" />
         <Form.Item>
@@ -205,41 +193,17 @@ const Register = () => {
                 backgroundColor: "#BBBBBB",
                 border: "none",
                 borderRadius: "10px",
-=======
-        <CustomInput
-          type="email"
-          label=" 이메일"
-          name="email"
-          message="이메일을 입력해주세요!"
-        />
-        <CustomInput
-          label=" 휴대폰번호"
-          name="phone"
-          message="휴대폰번호를 입력해주세요!"
-        />
-        <CustomInput label="전화번호" notreq={true} name="homephone" />
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "100%",
-          }}
-        >
-          <button
-            style={{
-              width: "280px",
-              height: "75px",
-              backgroundColor: "#FFFFFF",
-              border: "1px solid #113358",
-              borderRadius: "10px",
-            }}
-          >
-            <span
+              }}
+            >
+              <span
               style={{
-                color: "#113358",
-                font: "normal normal bold 22px/33px Noto Sans CJK KR",
->>>>>>> 8de77d678e7572be1bded8518af8ac87ff89b842
+                cursor: "pointer",
+                width: "280px",
+                height: " 75px",
+                backgroundColor: "#767676",
+                border: "none",
+                borderRadius: "10px",
+                marginLeft: "30px",
               }}
             >
               취소하기
@@ -258,7 +222,6 @@ const Register = () => {
           >
             <span
               style={{
-<<<<<<< HEAD
                 cursor: "pointer",
                 width: "280px",
                 height: " 75px",
@@ -266,16 +229,13 @@ const Register = () => {
                 border: "none",
                 borderRadius: "10px",
                 marginLeft: "30px",
-=======
-                color: "#FFFFFF",
-                font: "normal normal bold 22px/33px Noto Sans CJK KR",
->>>>>>> 8de77d678e7572be1bded8518af8ac87ff89b842
               }}
             >
               가입하기
             </span>
           </button>
-        </div>
+          </div>
+          </Form.Item>
       </Form>
     </StyledRegister>
   );
