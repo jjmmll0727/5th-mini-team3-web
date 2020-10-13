@@ -14,14 +14,6 @@
     "static/development/_ssgManifest.js"
   ],
   "pages": {
-<<<<<<< HEAD
-=======
-    "/Ranking": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/Ranking.js"
-    ],
->>>>>>> 8de77d678e7572be1bded8518af8ac87ff89b842
     "/_app": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
@@ -31,19 +23,16 @@
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
-<<<<<<< HEAD
     ],
-    "/mysites/append/[category]": [
+    "/login": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/mysites/append/[category].js"
+      "static/chunks/pages/login.js"
     ],
     "/mysites/main/[where]": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/mysites/main/[where].js"
-=======
->>>>>>> 8de77d678e7572be1bded8518af8ac87ff89b842
     ]
   },
   "ampFirstPages": []

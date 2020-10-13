@@ -3,8 +3,7 @@ import styled from "@emotion/styled";
 import { Card, Modal } from "antd";
 import { CloseOutlined, DeleteTwoTone } from "@ant-design/icons";
 const { Meta } = Card;
-import Logo from "../assets/img_listoreGraphic_signUpDone.svg";
-import DeleteIcon from "../assets/icon_delete_popUp.svg";
+import Nothing from "../components/MyPage/nothing"
 
 const StyledList = styled.div`
   display: flex;

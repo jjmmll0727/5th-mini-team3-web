@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Row, Col, Menu, Dropdown, Button } from "antd";
 import { EditOutlined, EllipsisOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
-import Card from "../../../components/Card"; //만든 카드 컴포넌트를 메인페이지에서 불러오고
+import Card from "../../../components/Card";
 import CustomMenu from "../../../components/Menu"
 import SiteList from "../../../components/SiteList"
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { GET_SITES_REQUEST } from "../../../actions";
-import Nothing from "../../../components/MyPage/nothing";
+
+import Nothing from "../../../components/MyPage/nothing"
 
 const StyledHome = styled.div`
   font-family: Noto Sans CJK KR;
@@ -57,7 +58,6 @@ const Home = () => {
   const { where } = router.query
   const dispatch = useDispatch()
   const { me } = useSelector(state => state.user)
-  console.log(document.cookie)
   useEffect(() => {
     dispatch({
       type: GET_SITES_REQUEST,
@@ -101,16 +101,6 @@ const Home = () => {
                 랭킹
               </Button>
               <SiteList cardList={currentWebsites} visible={show} />
-              {/* { currentWebsites[0] ? <div style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  minWidth: "700px"
-                }}>
-                  {currentWebsites.map((data) => (
-                    <Card key={data.id} href={data.href} content={data.content} title={data.title} imgsrc={data.imgsrc} />
-                  ))}
-              </div>
-              : <Nothing category={where} />} */}
             </Col>
           </Row>
         </Col>
