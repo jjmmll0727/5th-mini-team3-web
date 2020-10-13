@@ -25,10 +25,16 @@ mongoose.connect('mongodb://localhost:27017/team3mini').then((db)=>{
 
 ////Middleware
 //cors 
-const cors = require('cors');
+// const cors = require('cors');
+// app.use(cors({
+//   origin: true,
+//   withCredentials: true
+// }));
+
+const cors = require('cors')
 app.use(cors({
-  origin: true,
-  withCredentials: true
+    origin: true,
+    credentials: true
 }));
 
 //env
