@@ -26,7 +26,7 @@ const StyledRegister = styled.div`
     flex-direction: column;
     span:nth-of-type(1) {
       text-align: center;
-      color: #767676;
+      color: #191919;
       font: normal normal 900 40px/59px Noto Sans CJK KR;
     }
     span:nth-of-type(2) {
@@ -58,7 +58,13 @@ const layout = {
 
 const CustomInput = ({ label, name, message, notreq, type }) => {
   return (
-    <Form.Item label={label} name={name} rules={[{ required: notreq ? false : true, message: message ? message : null }]}>
+    <Form.Item
+      label={label}
+      name={name}
+      rules={[
+        { required: notreq ? false : true, message: message ? message : null },
+      ]}
+    >
       <Input
         type={type ? type : null}
         style={{
@@ -71,7 +77,13 @@ const CustomInput = ({ label, name, message, notreq, type }) => {
 };
 const CustomPass = ({ label, name, message, notreq, type }) => {
   return (
-    <Form.Item label={label} name={name} rules={[{ required: notreq ? false : true, message: message ? message : null }]}>
+    <Form.Item
+      label={label}
+      name={name}
+      rules={[
+        { required: notreq ? false : true, message: message ? message : null },
+      ]}
+    >
       <Input.Password
         style={{
           border: "none",
@@ -125,8 +137,18 @@ const Register = () => {
         <span>회원 가입</span>
         <span>* 표시는 필수 입력 항목입니다.</span>
       </div>
-      <Form onFinish={onFinish} onFinishFailed={onFinishFailed} {...layout} name="basic" initialValues={{ remember: true }}>
-        <Form.Item label="아이디" name="userId" rules={[{ required: true, message: "아이디를 입력해주세요!" }]}>
+      <Form
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        {...layout}
+        name="basic"
+        initialValues={{ remember: true }}
+      >
+        <Form.Item
+          label="아이디"
+          name="userId"
+          rules={[{ required: true, message: "아이디를 입력해주세요!" }]}
+        >
           <Input
             style={{
               border: "none",
@@ -134,14 +156,42 @@ const Register = () => {
             }}
             maxLength="50"
           />
+          <button
+            style={{
+              background: "#BBBBBB",
+              border: "none",
+              borderRadius: "17px",
+              width: "92px",
+              height: "34px",
+            }}
+          >
+            <span style={{ color: "#FFFFFF" }}>중복확인</span>
+          </button>
         </Form.Item>
-        <CustomPass label=" 비밀번호" name="password" message="비밀번호를 입력해주세요!" />
-        <CustomPass type="password" label=" 비밀번호확인" name="passwordCheck" message="비밀번호 확인을 입력해주세요!" />
+        <CustomPass
+          label=" 비밀번호"
+          name="password"
+          message="비밀번호를 입력해주세요!"
+        />
+        <CustomPass
+          type="password"
+          label=" 비밀번호확인"
+          name="passwordCheck"
+          message="비밀번호 확인을 입력해주세요!"
+        />
         <CustomInput label=" 이름" name="name" message="이름을 입력해주세요!" />
-        <Form.Item label=" 생년월일" name="birth" rules={[{ required: true, message: "생년월일을 입력해주세요!" }]}>
-          <DatePicker defaultValue={moment("2020/01/01", dateFormat)} format={dateFormat} />
+        <Form.Item
+          label=" 생년월일"
+          name="birth"
+          rules={[{ required: true, message: "생년월일을 입력해주세요!" }]}
+        >
+          <DatePicker
+            defaultValue={moment("2020/01/01", dateFormat)}
+            format={dateFormat}
+          />
         </Form.Item>
 
+<<<<<<< HEAD
         <CustomInput type="email" label=" 이메일" name="email" message="이메일을 입력해주세요!" />
         <CustomInput label=" 휴대폰번호" name="phone" message="휴대폰번호를 입력해주세요!" />
         <Form.Item>
@@ -155,19 +205,60 @@ const Register = () => {
                 backgroundColor: "#BBBBBB",
                 border: "none",
                 borderRadius: "10px",
+=======
+        <CustomInput
+          type="email"
+          label=" 이메일"
+          name="email"
+          message="이메일을 입력해주세요!"
+        />
+        <CustomInput
+          label=" 휴대폰번호"
+          name="phone"
+          message="휴대폰번호를 입력해주세요!"
+        />
+        <CustomInput label="전화번호" notreq={true} name="homephone" />
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
+          <button
+            style={{
+              width: "280px",
+              height: "75px",
+              backgroundColor: "#FFFFFF",
+              border: "1px solid #113358",
+              borderRadius: "10px",
+            }}
+          >
+            <span
+              style={{
+                color: "#113358",
+                font: "normal normal bold 22px/33px Noto Sans CJK KR",
+>>>>>>> 8de77d678e7572be1bded8518af8ac87ff89b842
               }}
             >
-              <span
-                style={{
-                  color: "#FFFFFF",
-                  font: "normal normal bold 22px/33px Noto Sans CJK KR",
-                }}
-              >
-                취소하기
-              </span>
-            </button>
-            <button
+              취소하기
+            </span>
+          </button>
+          <button
+            style={{
+              width: "280px",
+              height: " 75px",
+              backgroundColor: "#113358",
+              border: "none",
+              borderRadius: "10px",
+              marginLeft: "30px",
+            }}
+            htmlType="submit"
+          >
+            <span
               style={{
+<<<<<<< HEAD
                 cursor: "pointer",
                 width: "280px",
                 height: " 75px",
@@ -175,20 +266,16 @@ const Register = () => {
                 border: "none",
                 borderRadius: "10px",
                 marginLeft: "30px",
+=======
+                color: "#FFFFFF",
+                font: "normal normal bold 22px/33px Noto Sans CJK KR",
+>>>>>>> 8de77d678e7572be1bded8518af8ac87ff89b842
               }}
-              htmlType="submit"
             >
-              <span
-                style={{
-                  color: "#FFFFFF",
-                  font: "normal normal bold 22px/33px Noto Sans CJK KR",
-                }}
-              >
-                가입하기
-              </span>
-            </button>
-          </div>
-        </Form.Item>
+              가입하기
+            </span>
+          </button>
+        </div>
       </Form>
     </StyledRegister>
   );

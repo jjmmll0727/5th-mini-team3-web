@@ -2,6 +2,10 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+<<<<<<< HEAD
   "/mysites/main/[where]": "pages/mysites/main/[where].js",
   "/mysites/append/[category]": "pages/mysites/append/[category].js"
+=======
+  "/Ranking": "pages/Ranking.js"
+>>>>>>> 8de77d678e7572be1bded8518af8ac87ff89b842
 }

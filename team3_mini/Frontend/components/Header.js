@@ -42,14 +42,13 @@ const MenuWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 20px 100px;
-`; 
-
+`;
 
 const Menu = styled.span`
   display: inline-flex;
   float: left;
   align-items: center;
-  
+
   margin: 10px 30px;
   font-size: 15px;
   a {

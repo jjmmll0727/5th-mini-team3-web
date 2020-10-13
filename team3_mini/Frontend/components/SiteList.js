@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { Image, Card, Modal } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
-import Nothing from "./MyPage/nothing";
-
+import { Card, Modal } from "antd";
+import { CloseOutlined, DeleteTwoTone } from "@ant-design/icons";
 const { Meta } = Card;
+import Logo from "../assets/img_listoreGraphic_signUpDone.svg";
+import DeleteIcon from "../assets/icon_delete_popUp.svg";
 
 const StyledList = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  margin-bottom: 200px;
   img {
     background: #eeeeee;
     border-radius: 50%;

@@ -178,7 +178,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/styled */ "@emotion/styled");
 /* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_styled__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _icons_logo_listore_Footer_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../icons/logo_listore_Footer.svg */ "./icons/logo_listore_Footer.svg");
+<<<<<<< HEAD
 var _jsxFileName = "C:\\Users\\winco\\Desktop\\ds\\5th-mini-team3-web\\team3_mini\\Frontend\\components\\Footer.js";
+=======
+var _jsxFileName = "C:\\Users\\82105\\Desktop\\\uC815\uC6B0\uC790\uB8CC\\\uB3D9\uC544\uB9AC\uC790\uB8CC\\doubleslash\\mini-project\\5th-mini-team3-web\\team3_mini\\Frontend\\components\\Footer.js";
+>>>>>>> 8de77d678e7572be1bded8518af8ac87ff89b842
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -390,9 +394,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/styled */ "@emotion/styled");
 /* harmony import */ var _emotion_styled__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_emotion_styled__WEBPACK_IMPORTED_MODULE_2__);
+<<<<<<< HEAD
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "react-redux");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_3__);
 var _jsxFileName = "C:\\Users\\winco\\Desktop\\ds\\5th-mini-team3-web\\team3_mini\\Frontend\\components\\Header.js";
+=======
+/* harmony import */ var _icons_logo_listore_navi_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../icons/logo_listore_navi.svg */ "./icons/logo_listore_navi.svg");
+/* harmony import */ var _icons_icon_down_navi_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../icons/icon_down_navi.svg */ "./icons/icon_down_navi.svg");
+var _jsxFileName = "C:\\Users\\82105\\Desktop\\\uC815\uC6B0\uC790\uB8CC\\\uB3D9\uC544\uB9AC\uC790\uB8CC\\doubleslash\\mini-project\\5th-mini-team3-web\\team3_mini\\Frontend\\components\\Header.js";
+>>>>>>> 8de77d678e7572be1bded8518af8ac87ff89b842
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -3650,11 +3660,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_configureStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/configureStore */ "./store/configureStore.js");
 /* harmony import */ var antd_dist_antd_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! antd/dist/antd.css */ "./node_modules/antd/dist/antd.css");
 /* harmony import */ var antd_dist_antd_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(antd_dist_antd_css__WEBPACK_IMPORTED_MODULE_4__);
+<<<<<<< HEAD
 /* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../index.css */ "./index.css");
 /* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Footer */ "./components/Footer.js");
 /* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Header */ "./components/Header.js");
 var _jsxFileName = "C:\\Users\\winco\\Desktop\\ds\\5th-mini-team3-web\\team3_mini\\Frontend\\pages\\_app.js";
+=======
+/* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Footer */ "./components/Footer.js");
+/* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Header */ "./components/Header.js");
+var _jsxFileName = "C:\\Users\\82105\\Desktop\\\uC815\uC6B0\uC790\uB8CC\\\uB3D9\uC544\uB9AC\uC790\uB8CC\\doubleslash\\mini-project\\5th-mini-team3-web\\team3_mini\\Frontend\\pages\\_app.js";
+>>>>>>> 8de77d678e7572be1bded8518af8ac87ff89b842
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
