@@ -97,6 +97,7 @@ const Append = () => {
         if(!me){
         alert("로그인 후 이용해주세요!")
         router.push('/login')
+        
         }
     }, [ me ])
     function beforeUpload(file) {

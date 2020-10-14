@@ -18,7 +18,8 @@ const initialState = {
   changeNicknameLoading: false, // 닉네임 변경 시도중
   changeNicknameDone: false,
   changeNicknameError: null,
-  me: null,
+  me: false,
+  token: null,
   signUpData: {},
   loginData: {},
 };
@@ -32,20 +33,21 @@ const reducer = (state = initialState, action) => {
       case LOG_IN_SUCCESS:
         draft.loginLoading = false;
         draft.loginDone = true;
-        draft.me = action.data;
+        draft.token = action.data.token;
+        draft.me = true
         break;
       case LOG_IN_FAILURE:
         draft.loginLoading = false;
         draft.loginError = true;
         break;
       case LOG_OUT_REQUEST:
-        draft.loginLoading = true;
+        draft.logoutLoading = true;
         draft.logoutError = null;
         break;
       case LOG_OUT_SUCCESS:
         draft.logoutLoading = false;
         draft.logoutDone = true;
-        draft.me = null;
+        draft.me = false;
         break;
       case LOG_OUT_FAILURE:
         draft.logoutLoading = false;

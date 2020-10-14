@@ -4,7 +4,10 @@ import { combineReducers } from "redux";
 import user from "./user";
 import site from "./site";
 
-const intialState = {};
+const intialState = {
+  user: {},
+  post: {},
+};
 
 const rootReducer = combineReducers({
   index: (state = intialState, action) => {
@@ -14,7 +17,6 @@ const rootReducer = combineReducers({
           ...state,
           ...action.payload,
         };
-
       default:
         return state;
     }

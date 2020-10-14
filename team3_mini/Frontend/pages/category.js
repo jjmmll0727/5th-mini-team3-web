@@ -1,22 +1,15 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-import { Row, Col, Button, Dropdown, Menu } from "antd";
-=======
 import React from "react";
 import { Row, Col, Button, Dropdown, Menu, Tabs } from "antd";
->>>>>>> 8de77d678e7572be1bded8518af8ac87ff89b842
 import { EditOutlined, EllipsisOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
 import SiteList from "../components/SiteList";
 import shortid from "shortid";
 import faker from "faker";
-<<<<<<< HEAD
-
-=======
 import HeartIcon from "../assets/icon_heartFill_mySite_likeList.svg";
 import Ranking from "../pages/Ranking";
+
 const { TabPane } = Tabs;
->>>>>>> 8de77d678e7572be1bded8518af8ac87ff89b842
+
 const StyledHome = styled.div`
   font-family: Noto Sans CJK KR;
   margin-top: 200px;
@@ -38,12 +31,9 @@ const StyledHome = styled.div`
       padding-right: 20px;
     }
   }
-<<<<<<< HEAD
-=======
   span {
     margin: 5px;
   }
->>>>>>> 8de77d678e7572be1bded8518af8ac87ff89b842
   ul {
     list-style-type: none;
     padding: 0;
@@ -58,15 +48,12 @@ const StyledHome = styled.div`
     margin-top: 30px;
     margin-right: 30px;
   }
-<<<<<<< HEAD
-=======
   .tab-header {
     margin-top: 10px;
     padding: 5px;
     border-bottom: 3px solid #bbbbbb;
     display: inline-block;
   }
->>>>>>> 8de77d678e7572be1bded8518af8ac87ff89b842
 `;
 const menu = (
   <Menu>
@@ -78,23 +65,13 @@ const cardDataDummy = Array(5)
   .map(() => ({
     id: shortid.generate(),
     title: faker.name.findName(),
-<<<<<<< HEAD
-    imgsrc: faker.image.image(510, 136),
-=======
->>>>>>> 8de77d678e7572be1bded8518af8ac87ff89b842
     content: Array(faker.random.number(3))
       .fill(0)
       .map(() => faker.lorem.sentence()),
     href: faker.internet.url(),
   }));
-<<<<<<< HEAD
-  
-const Category = () => {
-  const [show, setShow] = useState(false);
-=======
 
 const Category = () => {
->>>>>>> 8de77d678e7572be1bded8518af8ac87ff89b842
   return (
     <StyledHome>
       <Row>
@@ -127,15 +104,6 @@ const Category = () => {
                 </Col>
               </Row>
 
-<<<<<<< HEAD
-              <Button size="large" shape="round" onClick={() => setShow(true)}>
-                사이트 목록
-              </Button>
-              <Button size="large" shape="round">
-                랭킹
-              </Button>
-              <SiteList cardList={cardDataDummy} visible={show} />
-=======
               <Tabs defaultActiveKey="1" onChange={(key) => console.log(key)}>
                 <TabPane tab="사이트 목록" key="1">
                   <SiteList cardList={cardDataDummy} />
@@ -151,7 +119,6 @@ const Category = () => {
                   <Ranking />
                 </TabPane>
               </Tabs>
->>>>>>> 8de77d678e7572be1bded8518af8ac87ff89b842
             </Col>
           </Row>
         </Col>
@@ -161,8 +128,4 @@ const Category = () => {
   );
 };
 
-<<<<<<< HEAD
 export default Category;
-=======
-export default Category;
->>>>>>> 8de77d678e7572be1bded8518af8ac87ff89b842

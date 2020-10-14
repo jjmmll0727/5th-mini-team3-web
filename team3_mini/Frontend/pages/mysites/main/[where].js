@@ -63,7 +63,7 @@ const Home = () => {
       type: GET_SITES_REQUEST,
       data: where
     })
-  }, [where])
+  }, [ where ])
   useEffect(() => {
     if(!me){
       alert("로그인 후 이용해주세요!")

@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import { Carousel, Row, Col } from "antd";
+import { useDispatch } from "react-redux";
+import { LOG_OUT_REQUEST } from "../actions";
 
 const StyledMain = styled.div`
   background: #bbbbbb;
@@ -50,6 +52,12 @@ const StyledContent = styled.div`
 `;
 
 const Main = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch({
+      type: LOG_OUT_REQUEST
+    })
+  })
   return (
     <StyledMain>
       <Row>

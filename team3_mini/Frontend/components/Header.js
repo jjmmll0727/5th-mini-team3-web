@@ -1,7 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import styled from "@emotion/styled";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { LOG_OUT_REQUEST, LOG_OUT_SUCCESS } from "../actions";
+import router from "next/router";
 // import { Dropdown } from "antd";
 // import { AiOutlineDown } from "react-icons/ai"; 둘다 오류남
 
@@ -27,11 +29,16 @@ const Container = styled.header`
 const MemberWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-
   margin: 20px 100px;
+  span {
+    font: normal 600 13px Noto Sans CJK KR;
+    color: #9a9a9a;
+    cursor: pointer;
+  }
   a {
     font: normal 600 13px Noto Sans CJK KR;
     color: #9a9a9a;
+    cursor: pointer;
   }
   #bar {
     margin: 0px;
@@ -102,11 +109,15 @@ const NoLogged = () => {
 }
 
 const Logged = () => {
+  const dispatch = useDispatch()
   return (
     <MemberWrapper>
-      <Link href="/login">
-        <a className="membership">로그아웃</a>
-      </Link>
+        <span onClick={() => {
+          dispatch({
+            type: LOG_OUT_REQUEST,
+          })
+          router.push("/")
+        }}>로그아웃</span>
   </MemberWrapper>
   )
 }
