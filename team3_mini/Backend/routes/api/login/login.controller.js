@@ -26,25 +26,15 @@ exports.login =( (req, res) => {
                         message: '서버 측에서 발생한 에러입니다.'
                     });
                     if (matched) {
-                        const getToken = () => {
-                            return new Promise((resolve, reject) => {
-                                jwt.sign({ user: log }, process.env.Access_SecretKey, { expiresIn: '3h' }, (err, token) => {
-                                    res.cookie('authorization', token);
-                                    resolve(token);
-                                    //res.send(token);
-                                    // res.status(200).json({
-                                    //     code: 201, // 로그인 성공
-                                    //     message: '로그인 성공',
-                                    //     token: token
-                                        
-                                    // });
-                                })
-                            })
-                        }
-                        getToken().then(token => {
-                            res.send(token);
+                        jwt.sign({ user: log }, process.env.Access_SecretKey, { expiresIn: '3h' }, (err, token) => {
+                            res.status(200).json({
+                                code: 201, // 로그인 성공
+                                message: '로그인 성공',
+                                token: token
+                                
+                            });
                         })
-                        
+
                     } else {
                         res.status(401).json({
                             code: 102, //비밀번호 실패
