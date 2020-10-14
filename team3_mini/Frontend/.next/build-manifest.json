@@ -24,10 +24,17 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
+<<<<<<< HEAD
     "/login": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/login.js"
+=======
+    "/mysites/append/[category]": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/mysites/append/[category].js"
+>>>>>>> dd6abfda4dda7bd8a2a1e78267e17930c6d8a864
     ],
     "/mysites/main/[where]": [
       "static/chunks/main.js",
