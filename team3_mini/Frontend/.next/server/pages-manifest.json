@@ -2,6 +2,10 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+<<<<<<< HEAD
   "/": "pages/index.js",
+=======
+  "/login": "pages/login.js",
+>>>>>>> 8a25f89482ba547d37f5c3056da72f262b487200
   "/mysites/main/[where]": "pages/mysites/main/[where].js"
 }

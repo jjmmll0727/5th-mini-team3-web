@@ -29,6 +29,14 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
+<<<<<<< HEAD
+=======
+    "/login": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/login.js"
+    ],
+>>>>>>> 8a25f89482ba547d37f5c3056da72f262b487200
     "/mysites/main/[where]": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
