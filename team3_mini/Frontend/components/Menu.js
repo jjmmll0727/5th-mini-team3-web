@@ -4,9 +4,49 @@ import styled from "@emotion/styled"
 import Link from "next/link"
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_CATEGORY_REQUEST, PUT_CATEGORY_REQUEST } from '../actions';
-import axios from 'axios';
 
-
+const categoryList = [
+  {
+    name: "과제/발표",
+    id: "5f8709302929f6db717bc9a6"
+  },
+  {
+    name: "논문",
+    id: "5f8709382929f6db717bc9a7"
+  },
+  {
+    name: "디자인",
+    id: "5f87093c2929f6db717bc9a8"
+  },
+  {
+    name: "쇼핑",
+    id: "5f8709402929f6db717bc9a9"
+  },
+  {
+    name: "여행",
+    id: "5f8709442929f6db717bc9aa"
+  },
+  {
+    name: "일상",
+    id: "5f8709492929f6db717bc9ab"
+  },
+  {
+    name: "회사",
+    id: "5f87094d2929f6db717bc9ac"
+  },
+  {
+    name: "대외활동",
+    id: "5f8709522929f6db717bc9ad"
+  },
+  {
+    name: "맛집",
+    id: "5f8709562929f6db717bc9ae"
+  },
+  {
+    name: "기타",
+    id: "5f8709592929f6db717bc9af"
+  }
+]
 
 const Active_li = styled.li`
   cursor: pointer;
@@ -35,40 +75,60 @@ const StyledLi = styled.li`
     color: black;
   }
 `
+
+const CustomOption = ({ name, id, onClick, token }) => {
+  return <li onClick={onClick}>{name}</li>
+}
+
 const Menu = ({ situation }) => {
   const [ plusMenu , setPlusMenu ] = useState(false)
   const onpMenuClick = useCallback(() => {
     setPlusMenu(prev => !prev )
   })
   const { token } = useSelector(state => state.user)
+  const { getCategoryDone, putCategoryError } = useSelector(state => state.user)
   const router = useRouter()
   const { where } = router.query
   const dispatch = useDispatch()
+
+  const onPlusClick = (id, token) => {
+    return async () => {
+     await dispatch({
+        type: PUT_CATEGORY_REQUEST,
+        id,
+        token
+      })
+      await dispatch({
+        type: GET_CATEGORY_REQUEST,
+        token: token
+      })
+    }
+  }
   useEffect(() => {
-    dispatch({
-      type: GET_CATEGORY_REQUEST,
-    })
-  },[])
+    if(token){
+      dispatch({
+        type: GET_CATEGORY_REQUEST,
+        token: token
+      })
+    }
+  },[ token, getCategoryDone ])
   const { Categories } = useSelector((state) => state.site)
   return (
       <ul style={{ paddingRight : "40px", minHeight: "800px" }}>
         {Categories.map((data) => {
           if(where == data){
-            return <Active_li><Link href={`/mysites/${situation ? situation : "append"}/${data}`}><a>{data}</a></Link></Active_li>
+            return <Active_li><Link href={`/mysites/${situation ? situation : "append"}/${data._id}`}><a>{data.name}</a></Link></Active_li>
           }else{
-            return <StyledLi><Link href={`/mysites/${situation  ? situation : "append"}/${data}`}><a>{data}</a></Link></StyledLi>
+            return <StyledLi><Link href={`/mysites/${situation  ? situation : "append"}/${data._id}`}><a>{data.name}</a></Link></StyledLi>
           }
         }
        )}
        <StyledLi onClick={onpMenuClick}>추가하기</StyledLi>
         {plusMenu ? <div>
           <ul>
-            <li onClick={() => {
-              const id = "5f8709302929f6db717bc9a6" 
-              axios.put('/category/include',  id , { headers: { 'authorization' : token }} )
-              //dispatch({type: PUT_CATEGORY_REQUEST, id: "5f7c6d655a2c417d28085d5e"})}
-            }}>리스토어1</li>
-            <li onClick={() => {dispatch({type: PUT_CATEGORY_REQUEST, id: "5f7c6d695a2c417d28085d5f"})}}>리스토어2</li>
+            {categoryList.map((data) => (
+              <CustomOption onClick={onPlusClick(data.id, token)} name={data.name} id={data.id}/>
+            ))}
           </ul>
         </div> : null}
       </ul>

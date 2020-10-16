@@ -54,14 +54,14 @@ const StyledMuck = styled.div`
     }
 `
 
-const Nothing = ({category}) => {
+const Nothing = () => {
     return (
             <StyledMuck>
                 <div className="plusPage_main">
                     <img src="/logo_2.PNG" />
                     <h4>필요한 사이트를 저장해보세요!</h4>
                     <h5>간단한 메모 작성, PDF 첨부 등이 가능합니다.</h5>
-                    <button><Link href={`/mysites/append/${category}`}><a>추가하기</a></Link></button>
+                    <button><Link href={`/mysites/append/ALL`}><a>추가하기</a></Link></button>
                 </div>
             </StyledMuck>
     );

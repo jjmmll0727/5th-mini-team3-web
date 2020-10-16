@@ -27,6 +27,7 @@ function* login(action) {
 
 function* logout() {
   try {
+    console.log("logout")
     yield put({
       type: LOG_OUT_SUCCESS,
     });
@@ -57,6 +58,7 @@ function* watchLogin() {
 }
 
 function* watchLogout() {
+  console.log("watchLogout")
   yield takeLatest(LOG_OUT_REQUEST, logout);
 }
 function* watchSignup() {

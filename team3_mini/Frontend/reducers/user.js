@@ -68,6 +68,7 @@ const reducer = (state = initialState, action) => {
         break;
       case "USER_ERROR_RESET":
         draft.signUpError = null;
+        break;
       default:
         break;
     }

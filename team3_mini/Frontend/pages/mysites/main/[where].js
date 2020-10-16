@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Row, Col, Menu, Dropdown, Button } from "antd";
 import { EditOutlined, EllipsisOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
-import Card from "../../../components/Card";
 import CustomMenu from "../../../components/Menu"
 import SiteList from "../../../components/SiteList"
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_SITES_REQUEST } from "../../../actions";
-
-import Nothing from "../../../components/MyPage/nothing"
+import axios from 'axios'
+import { GET_CATEGORY_REQUEST, GET_SITES_REQUEST } from "../../../actions";
 
 const StyledHome = styled.div`
   font-family: Noto Sans CJK KR;
@@ -46,30 +44,47 @@ const StyledHome = styled.div`
 
 
 
-const menu = (
-  <Menu>
-    <Menu.Item key="0">카테고리 삭제</Menu.Item>
-  </Menu>
-);
+
 
 const Home = () => {
   const [show, setShow] = useState(true);
+  const [name, setName] = useState()
   const router = useRouter()
   const { where } = router.query
   const dispatch = useDispatch()
-  const { me } = useSelector(state => state.user)
-  useEffect(() => {
-    dispatch({
-      type: GET_SITES_REQUEST,
-      data: where
-    })
-  }, [ where ])
+  const { me, token } = useSelector(state => state.user)
+  const { Categories } = useSelector(state => state.site)
+  const menu = (
+    <Menu>
+      <Menu.Item onClick={async () => {
+        await axios.put(`/category/exclude`, { id: where }, { headers: {
+          'authorization' : token,
+        }})
+        await dispatch({
+          type: GET_CATEGORY_REQUEST,
+          token: token
+        })
+        await router.push("/mysites/main/ALL")
+        }} key="0">카테고리 삭제</Menu.Item>
+    </Menu>
+  );
   useEffect(() => {
     if(!me){
       alert("로그인 후 이용해주세요!")
       router.push('/login')
     }
   }, [ me ])
+  useEffect(() => {
+    console.log(Categories)
+    setName(Categories.find(x => x._id === where).name)
+  }, [ Categories, where ])
+  useEffect(() => {
+    dispatch({
+      type: GET_SITES_REQUEST,
+      token,
+      category : where
+    })
+  },[ where ])
   const { currentWebsites } = useSelector((state) => state.site)
   return (
     <StyledHome>
@@ -84,7 +99,7 @@ const Home = () => {
               <h2>김삼삼님의 사이트</h2>
               <Row>
                 <Col md={16}>
-                  <h1>{where}</h1>
+                  <h1>{name}</h1>
                 </Col>
                 <Col className="header" md={8}>
                   <Dropdown overlay={menu} trigger={["click"]}>

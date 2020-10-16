@@ -6,7 +6,8 @@ import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import AppLayout from "../../../components/AppLayout"
 import TextArea from 'antd/lib/input/TextArea';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { ADD_SITE_REQUEST } from '../../../actions';
 
 const StyledMain = styled.div`
     .submit_btn{
@@ -79,14 +80,28 @@ const StyledMain = styled.div`
 `
 const Append = () => {
     const router = useRouter()
+    const [name, setName] = useState()
+    const [open, setOpen] = useState(false)
     const { category } = router.query
     const layout = {
         labelCol: { span: 0 },
         wrapperCol: { span: 16 },
       };
-      
-    const onFinish = (data) => {
-        console.log(data);
+    const dispatch = useDispatch()
+    const { token } = useSelector(state => state.user)
+    const { Categories } = useSelector(state => state.site)
+    const onFinish = async (data) => {
+        const sendMe = {
+            ...data,
+            category_id : category,
+            open
+        }
+        await dispatch({
+            type: ADD_SITE_REQUEST,
+            data : sendMe,
+            token
+        })
+        await router.push(`/mysites/main/${category}`)
       };
     
       const onFinishFailed = (errorInfo) => {
@@ -95,33 +110,21 @@ const Append = () => {
       const { me } = useSelector(state => state.user)
     useEffect(() => {
         if(!me){
-        alert("로그인 후 이용해주세요!")
-        router.push('/login')
-        
+            alert("로그인 후 이용해주세요!aaa")
+            router.push('/login')
         }
     }, [ me ])
-    function beforeUpload(file) {
-        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-        if (!isJpgOrPng) {
-            message.error('사진만 업로드 할 수 있습니다!');
-            return false
-        }
-        const isLt2M = file.size / 1024 / 1024 < 2;
-        if (!isLt2M) {
-            message.error('이미지 크기가 2MB 이하여야 합니다!');
-            return false
-        }
-        setIsUpload(true)
-        return isJpgOrPng && isLt2M;
-    }
-  const [ isUpload, setIsUpload ] = useState(false)
-  const [ loading, setLoading ] = useState(false)
+    useEffect(() => {
+        console.log(Categories)
+        setName(Categories.find(x => x._id === category).name)
+      }, [ Categories, category ])
+
     return (
         <>
             <AppLayout>
                 <StyledMain>
                 <h2>김삼삼님의 사이트</h2>
-                <h1>{category}</h1>
+                <h1>{name}</h1>
                 <div className="append_form">
                     <Form onFinish={onFinish} onFinishFailed={onFinishFailed} {...layout} name="basic" initialValues={{ remember: true }}>
                         <div className="append_title" style={{display: "flex", flexWrap: "nowrap"}}>
@@ -133,7 +136,7 @@ const Append = () => {
                         <Form.Item label="URL" name="url" rules={[{ required: true, message: "URL을 입력해주세요!" }]}>
                             <Input maxLength="50" placeholder="URL을 입력하세요"/>
                         </Form.Item>
-                        <Form.Item className="append_text" label="메모" name="memo">
+                        <Form.Item className="append_text" label="메모" name="description">
                             <TextArea
                                 rows="10"
                                 placeholder="메모를 입력하세요"
@@ -144,23 +147,10 @@ const Append = () => {
                                 }}
                             />
                         </Form.Item>
-                        <Form.Item label="사진" name="picture">
-                            <Upload
-                                name="avatar"
-                                listType="picture-card"
-                                beforeUpload={beforeUpload}
-                                style={{ width: "300px" }}
-                            >
-                                {isUpload ? null :
-                                <div>
-                                    {loading ? <LoadingOutlined /> : <PlusOutlined />}
-                                    <div style={{ marginTop: 8 }}>Upload</div>
-                                </div>}
-                            </Upload>
-                        </Form.Item>
-
-                        <Form.Item label="공개 설정" name="isPrivate">
-                            <Switch />
+                        <Form.Item label="공개 설정">
+                            <Switch onClick={() => {
+                                setOpen(prev => !prev)
+                            }} />
                         </Form.Item>
                         <Form.Item
                         style={{ float: "right" }}

@@ -50,12 +50,12 @@ const StyledLogin = styled.div`
 
 const Login = () => {
     const dispatch = useDispatch()
-    const { loginDone } = useSelector(state => state.user)
+    const { me } = useSelector(state => state.user)
 
     useEffect(() => {
-        if(loginDone)
+        if(me)
         router.push("/mysites/main/ALL")
-    }, [loginDone])
+    }, [me])
 
     const onFinished = (data) => {
         dispatch({

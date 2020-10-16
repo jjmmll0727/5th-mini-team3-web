@@ -122,8 +122,7 @@ const Logged = () => {
   )
 }
 
-const Header = () => { 
-  
+const Header = () => {
   const { me } = useSelector(state => state.user)
   return (
     <Container>

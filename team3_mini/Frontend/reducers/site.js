@@ -6,9 +6,16 @@ import { GET_SITES_FAILURE, GET_SITES_REQUEST, GET_SITES_SUCCESS,
          ADD_SITE_FAILURE,ADD_SITE_REQUEST,ADD_SITE_SUCCESS,DELETE_SITE_FAILURE,DELETE_SITE_REQUEST,DELETE_SITE_SUCCESS
 } from "../actions";
 
+const initialCategories = [{
+  _id: "ALL",
+  name: "ALL",
+  user: [],
+  __v: 1,
+}]
+
 const initialState = {
   currentWebsites: [],
-  Categories: ["ALL"],
+  Categories: initialCategories,
   getSitesLoading: false, // 사이트
   getSitesDone: false,
   getSitesError: null,
@@ -21,6 +28,9 @@ const initialState = {
   deleteCategoryLoading: false, // 카테고리 추가
   deleteCategoryDone: false,
   deleteCategoryError: null,
+  addSiteLoading: false,
+  addSiteDone: false,
+  addSiteError: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -44,7 +54,7 @@ const reducer = (state = initialState, action) => {
       case GET_CATEGORY_SUCCESS:
         draft.getCategoryLoading = false;
         draft.getCategoryDone = true;
-        draft.Categories = draft.Categories.concat(action.data);
+        draft.Categories = initialCategories.concat(action.data);
         break;
       case GET_CATEGORY_FAILURE:
         draft.getCategoryDone = false;
@@ -62,7 +72,7 @@ const reducer = (state = initialState, action) => {
       case PUT_CATEGORY_FAILURE:
         draft.putCategoryDone = false;
         draft.putCategoryLoading = false;
-        draft.putCategoryError = action.data;
+        draft.putCategoryError = action.error;
         break; 
       case DELETE_CATEGORY_REQUEST:
         draft.deleteCategoryDone = false;
@@ -75,7 +85,21 @@ const reducer = (state = initialState, action) => {
       case DELETE_CATEGORY_FAILURE:
         draft.deleteCategoryDone = false;
         draft.deleteCategoryError = action.data;
-        break;     
+        break;
+      case ADD_SITE_REQUEST:
+        draft.addSiteLoading = true;
+        break;
+      case ADD_SITE_SUCCESS:
+        draft.addSiteDone = true;
+        draft.addSiteLoading = false
+        break;
+      case ADD_SITE_FAILURE:
+        draft.addSiteDone = false;
+        draft.addSiteError = error
+        break;
+      case "RESET_ERRORS":
+        draft.getSitesError = null;
+        draft.putCategoryError = null;     
       default:
         break;
     }
