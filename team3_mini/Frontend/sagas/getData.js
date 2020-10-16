@@ -23,7 +23,7 @@ function* getSites(action) {
     const result = yield call(getSitesApi, action)
     yield put({
       type: GET_SITES_SUCCESS,
-      data: result.data
+      data: result.data.my_category_sites
     })
   } catch (err) {
     yield put({

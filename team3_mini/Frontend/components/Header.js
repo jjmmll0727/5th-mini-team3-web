@@ -4,8 +4,15 @@ import styled from "@emotion/styled";
 import { useDispatch, useSelector } from "react-redux";
 import { LOG_OUT_REQUEST, LOG_OUT_SUCCESS } from "../actions";
 import router from "next/router";
+import Logo_Footer from "../assets/logo_listore_Footer.svg";
+
 // import { Dropdown } from "antd";
 // import { AiOutlineDown } from "react-icons/ai"; 둘다 오류남
+
+const Logo = styled.span`
+  margin-right: 100px;
+`;
+
 
 const Container = styled.header`
   min-width: 1800px;
@@ -129,7 +136,10 @@ const Header = () => {
       {me ? <Logged /> : <NoLogged />}
       <Menu>
         <Link href="/">
-          <a id="logo">로고 OR 웹사이트명</a>
+          <Logo>
+            <Logo_Footer></Logo_Footer>
+            {/* <a>사이트 로고</a> */}
+          </Logo>
         </Link>
 
         <Link href="/">
@@ -137,6 +147,9 @@ const Header = () => {
         </Link>
         <Link href="/mysites/main/ALL">
           <a className="menu">나의 사이트</a>
+        </Link>
+        <Link href="/community/community_main/1">
+          <a className="menu">커뮤니티</a>
         </Link>
       </Menu>
 

@@ -75,7 +75,6 @@ const Home = () => {
     }
   }, [ me ])
   useEffect(() => {
-    console.log(Categories)
     setName(Categories.find(x => x._id === where).name)
   }, [ Categories, where ])
   useEffect(() => {

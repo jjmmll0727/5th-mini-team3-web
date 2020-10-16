@@ -2,5 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/mysites/main/[where]": "pages/mysites/main/[where].js"
+  "/mysites/main/[where]": "pages/mysites/main/[where].js",
+  "/community/community_main/[where]": "pages/community/community_main/[where].js"
 }
