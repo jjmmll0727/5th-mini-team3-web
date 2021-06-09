@@ -1,14 +1,4 @@
 
-<style>
-code {
-  font-family: Consolas,"courier new";
-  color: crimson;
-  background-color: #f1f1f1;
-  padding: 2px;
-  font-size: 105%;
-}
-</style>
-
 <div style = "font-size: 28px; line-height: 25px;">
 <center><strong>첫 연합동아리</strong></center><br><br>
 </div>
