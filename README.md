@@ -21,3 +21,6 @@
 
 ### 구현화면
 
+![ex_screenshot](./team3_mini/img/restore2.png)
+![ex_screenshot](./team3_mini/img/restore1.png)
+
